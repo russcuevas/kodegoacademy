@@ -15,6 +15,7 @@ Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('su
 
 // AUTH CONTROLLER
 Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');
+Route::get('/registration', [AuthController::class, 'Registration'])->name('registrationpage');
 
 // ADMIN PANEL
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboardpage');

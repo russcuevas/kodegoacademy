@@ -16,8 +16,12 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            
+            <br>
+
             <div class="form-group">
-                <a href="" style="text-decoration: none;">Forgot password</a>
+                <a href="/registration">Click here if you dont have an account</a><br>
+                <a href="#" id="forgot-password">Forgot password</a>
             </div>
             <button type="submit" class="btn btn-primary mt-2">Login</button>
         </form>

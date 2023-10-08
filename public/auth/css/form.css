@@ -1,7 +1,28 @@
+body {
+    background-color: #212529;
+    background-image: url('../../page/images/bg-hero.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+.row a{
+    color: gray;
+    text-decoration: none;
+}
+
+.title h1{
+    color: white;
+}
+
 .title p{
     color: red;
     font-weight: 900;
     animation: glitch 2s infinite;
+}
+
+.container{
+    margin-top: 150px;
 }
 
 @keyframes glitch {
@@ -25,8 +46,4 @@
         transform: translateX(-2px);
         opacity: 0.7;
     }
-}
-
-.container{
-    margin-top: 200px;
 }
