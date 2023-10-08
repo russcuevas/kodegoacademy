@@ -6,7 +6,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <form action="" method="POST" class="col-md-4">
+        <form action="" method="POST" class="col-md-4 mt-5">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" required>

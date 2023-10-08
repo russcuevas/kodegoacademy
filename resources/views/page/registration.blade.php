@@ -6,7 +6,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <form action="" method="POST" class="col-md-4" enctype="multipart/form-data">
+        <form action="" method="POST" class="col-md-4 mt-3" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="profile_picture">Profile picture</label>
                 <input type="file" id="profile_picture" name="profile_picture" accept=".jpg, .jpeg, .png" style="display: none;">
