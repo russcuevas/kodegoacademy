@@ -45,3 +45,42 @@ function toggleCPasswordVisibility() {
         confirmPasswordToggle.innerHTML = '&#x1F441;';
     }
 }
+
+// JQUERY PASSWORD VALIDATION
+$(document).ready(function () {
+    $('#password').on('input', function () {
+        const password = $(this).val();
+        const passwordLength = password.length;
+
+        if (passwordLength === 0) {
+            $('#password-help').text('');
+        } else if (passwordLength >= 8 && passwordLength <= 12) {
+            $('#password-help').text('');
+        } else {
+            $('#password-help').text('Password must be 8 - 12 characters');
+        }
+    });
+});
+
+// JQUERY CONFIRM PASSWORD VALIDATION
+$(document).ready(function () {
+    $('#confirm_password').on('input', function () {
+        const confirmPassword = $(this).val();
+        const password = $('#password').val();
+        const cPasswordHelp = $('#c-password-help');
+
+        if (confirmPassword === 0) {
+            cPasswordHelp.text('');
+        } else if (confirmPassword === password) {
+            cPasswordHelp.text('Password match');
+            cPasswordHelp.removeClass('text-danger');
+            cPasswordHelp.addClass('text-success');
+        } else {
+            cPasswordHelp.text('Passwords do not match');
+            cPasswordHelp.removeClass('text-success');
+            cPasswordHelp.addClass('text-danger');
+        }
+    });
+});
+
+

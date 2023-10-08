@@ -26,6 +26,7 @@
                     <input type="password" class="form-control" id="password" name="password" required>
                     <span class="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
                 </div>
+                <span id="password-help" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -34,6 +35,7 @@
                     <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                     <span class="confirm-pass-toggle" onclick="toggleCPasswordVisibility()">&#x1F441;</span>
                 </div>
+                <span id="c-password-help" class="text-danger"></span>
             </div>
 
 
