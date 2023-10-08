@@ -11,6 +11,7 @@ Route::get('/home', [HomeController::class, 'Home'])->name('homepage');
 Route::get('/about', [HomeController::class, 'About'])->name('aboutpage');
 Route::get('/courses', [HomeController::class, 'Course'])->name('pagecourse');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
+Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
 
 // AUTH CONTROLLER
 Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');

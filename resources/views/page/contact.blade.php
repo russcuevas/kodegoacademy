@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <h1 class="title" style="color: #9fef00">Contact Us</h1>
-                    <form id="contactForm" action="" method="POST">
-
+                    <form class="contactForm" action="{{ route('submitcontact') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label text-white">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
