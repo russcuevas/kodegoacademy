@@ -14,7 +14,10 @@
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="password-input-wrapper">
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
+                </div>
             </div>
             
             <br>

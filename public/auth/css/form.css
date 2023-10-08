@@ -25,6 +25,38 @@ body {
     margin-top: 150px;
 }
 
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.confirm-password-input-wrapper {
+    position: relative;
+}
+
+.confirm-pass-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: gray;
+    padding: 5px;
+    border-radius: 50px;
+
+}
+
+
 @keyframes glitch {
     0% {
         transform: translateX(0);

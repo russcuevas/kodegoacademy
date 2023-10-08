@@ -24,10 +24,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" style="font-weight: 600;" href="#">Profile</a>
-                            <a class="dropdown-item" style="font-weight: 600;" href="#">Login</a>
-                            <!-- <a class="dropdown-item" href="logout.php">Logout</a> -->
+                        <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="userDropdown">
+                            {{-- <a class="dropdown-item" style="font-weight: 600;" href="#">Profile</a> --}}
+                            <a class="dropdown-item" style="font-weight: 600;" href="/login">Login</a>
+                            {{-- <a class="dropdown-item" href="">Logout</a> --}}
                         </div>
                     </li>
                 </ul>

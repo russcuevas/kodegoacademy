@@ -22,8 +22,20 @@
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="password-input-wrapper">
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
+                </div>
             </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm password:</label>
+                <div class="confirm-password-input-wrapper">
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    <span class="confirm-pass-toggle" onclick="toggleCPasswordVisibility()">&#x1F441;</span>
+                </div>
+            </div>
+
 
             <br>
 

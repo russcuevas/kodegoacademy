@@ -37,8 +37,15 @@ body {
 
 .dropdown-item:hover {
     color: #9fef00 !important;
-    background-color: transparent !important; /* Optional: Remove the background color */
+    background-color: transparent !important;
 }
+
+.custom-dropdown-menu {
+    width: 10px !important;
+    right: 0 !important;
+    left: auto !important; 
+}
+
 
 
 /* HEADER */
