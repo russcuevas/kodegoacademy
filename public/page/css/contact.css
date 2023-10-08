@@ -1,0 +1,99 @@
+body {
+    background-color: #212529;
+    background-image: url('../images/bg-hero.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* NAVBAR BUTTON */
+.navbar-toggler {
+    background-color: #9fef00;
+    border-radius: 10px;
+}
+
+.navlogo {
+    height: 70px;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #9fef00 !important;
+}
+
+/* ACTIVE LINK NAV */
+.active-link {
+    color: #9fef00 !important;
+    text-decoration: underline;
+}
+
+.dropdown-item:hover {
+    color: #9fef00 !important;
+    background-color: transparent !important; /* Optional: Remove the background color */
+}
+
+
+@keyframes glitch-color {
+   0% {
+      transform: translate(0);
+   }
+
+   20% {
+      transform: translate(-3px, 3px);
+   }
+
+   40% {
+      transform: translate(-3px, -3px);
+   }
+
+   60% {
+      transform: translate(3px, 3px);
+   }
+
+   80% {
+      transform: translate(3px, -3px);
+   }
+
+   to {
+      transform: translate(0);
+   }
+}
+
+/* LOADING SPINNER */
+
+#loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+}
+
+#loading-spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #9fef00;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+}
