@@ -80,4 +80,9 @@ class AuthController extends Controller
         }
         return view('page.registration');
     }
+
+    public function ForgotPassword()
+    {
+
+    }
 }

@@ -25,10 +25,33 @@
 
             <div class="form-group">
                 <a href="/registration">Click here if you dont have an account</a><br>
-                <a href="#" id="forgot-password">Forgot password</a>
+            <a href="#" id="forgot-password-link" data-toggle="modal" data-target="#forgot-password-modal">Forgot password</a>
             </div>
             <button type="submit" class="btn btn-primary mt-2">Login</button>
         </form>
+
+        <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="forgotPasswordForm" action="" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="forgot-email" class="text-black mb-2">Enter Email:</label>
+                                <input type="email" class="form-control" id="forgot-email" name="forgot-email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
