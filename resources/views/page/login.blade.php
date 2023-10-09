@@ -10,13 +10,13 @@
             @csrf
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
                 <div class="password-input-wrapper">
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password">
                     <span class="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
                 </div>
             </div>

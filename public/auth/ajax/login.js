@@ -3,6 +3,18 @@ $(document).ready(function () {
     $('form').on('submit', function (e) {
         e.preventDefault();
 
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        if (!email || !password){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'Fill up all fields first',
+            });
+            return;
+        }
+
         var formData = $(this).serialize();
 
         $.ajax({
