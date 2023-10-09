@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ asset('page/sweetalert2/dist/sweetalert2.css') }}">
         <link rel="stylesheet" href="{{ asset('auth/css/fontawesome/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('auth/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('auth/css/form.css') }}">

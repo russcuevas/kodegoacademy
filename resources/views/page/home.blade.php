@@ -8,7 +8,7 @@
                     <div class="glitch" data-glitch="Welcome to KodeGo">Welcome to KodeGo</div>
                 </div>
                 <p>The #1 tutorial for beginner programmers, upskilling platform</p>
-                <a class="btn btn-primary text-black" href="course.php" role="button">Enroll Now</a>
+                <a class="btn btn-primary text-black" href="/courses" role="button">Enroll Now</a>
             </div>
 
             <div class="col-lg-6 js-tilt" data-tilt>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button onclick="window.location.href = '{{ route('pagecourse') }}';" class="btn btn-primary">View more</button>
+                    <button onclick="window.location.href = '/courses'" class="btn btn-primary">View more</button>
                 </div>
             </div>
         </div>

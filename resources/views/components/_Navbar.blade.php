@@ -25,9 +25,18 @@
                             <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="userDropdown">
-                            {{-- <a class="dropdown-item" style="font-weight: 600;" href="#">Profile</a> --}}
+                        @auth
+                        @if (auth()->user()->user_role === 'user')
+                            <a class="dropdown-item" style="font-weight: 600;" href="#">Profile</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                        @elseif (auth()->user()->user_role === 'admin')
+                            <a class="dropdown-item" style="font-weight: 600;" href="/dashboard">Dashboard</a>
+                        @elseif (auth()->user()->user_role === 'instructor')
+                            <a class="dropdown-item" style="font-weight: 600;" href="/instructordb">Dashboard</a>
+                        @endif
+                        @else
                             <a class="dropdown-item" style="font-weight: 600;" href="/login">Login</a>
-                            {{-- <a class="dropdown-item" href="">Logout</a> --}}
+                        @endauth
                         </div>
                     </li>
                 </ul>

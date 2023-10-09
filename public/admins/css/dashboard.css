@@ -99,6 +99,64 @@
     padding: 50px;
 }
 
+/* LOADING SPINNER */
+#loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+    text-align: center;
+}
+
+#loading-spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #9fef00;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-text {
+    position: relative;
+    color: black;
+    bottom: 0;
+    top: 100%;
+    right: -37px;
+    transform: translateX(-50%);
+}
+
+#backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: whitesmoke;
+    z-index: 9998;
+    display: none;
+}
+
+.circle {
+    background-color: #9fef00;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.circle img {
+    width: 100%;
+    height: auto;
+}
+
 
 #myTable {
     font-size: 20px;

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 // USER PANEL
@@ -15,9 +16,15 @@ Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('su
 
 // AUTH CONTROLLER
 Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');
+Route::post('/loginrequest', [AuthController::class, 'LoginRequest'])->name('loginrequest');
 Route::get('/registration', [AuthController::class, 'Registration'])->name('registrationpage');
+Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 
 // ADMIN PANEL
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboardpage');
 Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
 Route::get('/website', [AdminController::class, 'Website'])->name('websitepage');
+
+// INSTRUCTOR PANEL
+Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');
+Route::get('/enroll', [InstructorController::class, 'InstructorEnroll'])->name('enrollpage');
