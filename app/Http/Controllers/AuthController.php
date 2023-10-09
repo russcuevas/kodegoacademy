@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ForgotPassword;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -139,8 +140,23 @@ class AuthController extends Controller
         return response()->json(['message' => 'User not found with that email.'], 404);
     }
 
-    public function PasswordReset()
+    public function PasswordReset(Request $request, $token)
     {
-        return view('page.password_reset');
+        $passwordReset = ForgotPassword::where('token', $token)->first();
+
+        if ($passwordReset) {
+            $user_id = $passwordReset->user_id;
+
+            $user = User::find($user_id);
+
+            if ($user) {
+                $email = $user->email;
+
+                return view('page.password_reset', ['token' => $token, 'email' => $email]);
+            }
+        } else {
+            return view('page.password_reset');
+        }
     }
+
 }
