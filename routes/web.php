@@ -19,6 +19,8 @@ Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');
 Route::post('/loginrequest', [AuthController::class, 'LoginRequest'])->name('loginrequest');
 Route::get('/registration', [AuthController::class, 'Registration'])->name('registrationpage');
 Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
+Route::post('/forgot-password', [AuthController::class, 'ForgotPassword'])->name('forgotpassword');
+Route::get('/password_reset/{token}', [AuthController::class, 'PasswordReset'])->name('password.reset');
 
 // ADMIN PANEL
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboardpage');

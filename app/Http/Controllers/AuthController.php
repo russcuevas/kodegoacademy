@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class AuthController extends Controller
 {
@@ -81,8 +84,63 @@ class AuthController extends Controller
         return view('page.registration');
     }
 
-    public function ForgotPassword()
+    public function ForgotPassword(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
 
+        $email = $request->input('email');
+
+        $token = bin2hex(random_bytes(32));
+
+        $user = User::where('email', $email)->first();
+
+        if ($user) {
+            $existingReset = $user->passwordResets()->first();
+
+            if ($existingReset) {
+                $existingReset->update([
+                    'token' => $token,
+                ]);
+            } else {
+                $user->passwordResets()->create([
+                    'token' => $token,
+                ]);
+            }
+
+            try {
+                $mail = new PHPMailer(true);
+
+                $mail->isSMTP();
+                $mail->SMTPDebug = 0;
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'tls';
+                $mail->Host = 'smtp.gmail.com';
+                $mail->Port = 587;
+                $mail->Username = 'russelarchiefoodorder@gmail.com';
+                $mail->Password = 'cjwitldatrerscln';
+
+                $mail->setFrom('russdev@gmail.com', 'KodeGo Company');
+                $mail->addAddress($email);
+
+                $mail->Subject = 'Password Reset Request';
+                $mail->Body = "To reset your password, click the following link: " . url('/password_reset', ['token' => $token]);
+
+                $mail->send();
+
+                return response()->json(['message' => 'Password reset email sent.']);
+
+            } catch (Exception $e) {
+                return response()->json(['message' => 'Email could not be sent.'], 500);
+            }
+        }
+
+        return response()->json(['message' => 'User not found with that email.'], 404);
+    }
+
+    public function PasswordReset()
+    {
+        return view('page.password_reset');
     }
 }

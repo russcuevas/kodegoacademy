@@ -6,7 +6,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <form id="loginRequest" action="{{ route('loginrequest') }}" method="POST" class="col-md-4 mt-5">
+        <form class="col-md-4 mt-5 loginRequest" action="{{ route('loginrequest') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -40,11 +40,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="forgotPasswordForm" action="" method="POST">
+                        <form id="forgotPasswordForm" action="{{ route('forgotpassword') }}" method="POST" class="forgotPasswordForm">
                             @csrf
                             <div class="form-group">
-                                <label for="forgot-email" class="text-black mb-2">Enter Email:</label>
-                                <input type="email" class="form-control" id="forgot-email" name="forgot-email" required>
+                                <label for="email" class="text-black mb-2">Enter Email:</label>
+                                <input type="email" class="form-control" id="forgot-email" name="email" required>
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Submit</button>
                         </form>

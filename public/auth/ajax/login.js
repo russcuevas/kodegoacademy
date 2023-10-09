@@ -1,6 +1,6 @@
 // LOGIN REQUEST
 $(document).ready(function () {
-    $('form').on('submit', function (e) {
+    $('.loginRequest').on('submit', function (e) {
         e.preventDefault();
 
         var email = $('#email').val();
