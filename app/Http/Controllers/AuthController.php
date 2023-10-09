@@ -130,10 +130,10 @@ class AuthController extends Controller
 
                 $mail->send();
 
-                return response()->json(['message' => 'Password reset email sent.'], 200);
+                return response()->json(['message' => 'Password reset request is sent successfully, please check your email to change your password.', 'status' => 200]);
 
             } catch (Exception $e) {
-                return response()->json(['message' => 'Email could not be sent.'], 500);
+                return response()->json(['message' => 'Email could not be sent.', 'status' => 500]);
             }
         }
 

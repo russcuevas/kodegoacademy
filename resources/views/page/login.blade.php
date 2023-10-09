@@ -55,7 +55,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="email" class="text-black mb-2">Enter Email:</label>
-                                <input type="email" class="form-control" id="forgot-email" name="email" required>
+                                <input type="email" class="form-control" id="forgot-email" name="email">
                             </div>
                             <button type="submit" class="btn btn-primary mt-2">Submit</button>
                         </form>

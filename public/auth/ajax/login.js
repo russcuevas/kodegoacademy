@@ -47,6 +47,16 @@ $(document).ready(function () {
     $('.forgotPasswordForm').on('submit', function (e) {
         e.preventDefault();
 
+        var forgot_email = $('#forgot-email').val();
+        
+        if (!forgot_email){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'Fill up fields first',
+            });
+            return;
+        }
         var formData = $(this).serialize();
 
         $.ajax({
@@ -55,7 +65,7 @@ $(document).ready(function () {
             data: formData,
             success: function (response) {
                 console.log(response);
-                if (response.redirect_route) {
+                if (response.status === 200) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
