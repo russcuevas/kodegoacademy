@@ -40,11 +40,18 @@
             @else
             <body>
                 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-                    <p> 404 Not Found <a style="color: wheat" href="/login">Try again</a> </p>
+                    <p> 404 Not Found <a style="color: wheat; text-decoration: none" href="/login">Try again</a> </p>
+                </div>
+                <div>
+                    <div class="hero"> 
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                    </div>
                 </div>
             </body>
-            @endif
-        </body>
-    </html>
-
+        @endif
 @include('components.Form._Formfooter')

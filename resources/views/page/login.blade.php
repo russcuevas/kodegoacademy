@@ -29,6 +29,17 @@
             </div>
             <button type="submit" class="btn btn-primary mt-2">Login</button>
         </form>
+        
+                <div>
+                    <div class="hero"> 
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                        <div class="cube"></div>
+                    </div>
+                </div>
 
         <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

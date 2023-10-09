@@ -130,14 +130,14 @@ class AuthController extends Controller
 
                 $mail->send();
 
-                return response()->json(['message' => 'Password reset email sent.']);
+                return response()->json(['message' => 'Password reset email sent.'], 200);
 
             } catch (Exception $e) {
                 return response()->json(['message' => 'Email could not be sent.'], 500);
             }
         }
 
-        return response()->json(['message' => 'User not found with that email.'], 404);
+        return response()->json(['message' => ''], 404);
     }
 
     public function PasswordReset(Request $request, $token)

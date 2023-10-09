@@ -38,7 +38,6 @@
                 <span id="c-password-help" class="text-danger"></span>
             </div>
 
-
             <br>
 
             <div class="form-group">
