@@ -16,8 +16,9 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-
-        return view('admin.dashboard');
+        $getTotalUsers = User::where('user_role', 'user')->count();
+        $getTotalInstructors = User::where('user_role', 'instructor')->count();
+        return view('admin.dashboard', compact('getTotalUsers', 'getTotalInstructors'));
     }
 
     public function Users()
