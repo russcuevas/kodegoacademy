@@ -4,10 +4,10 @@
 
 <div class="container">
     <div class="main-content col-md-11">
-        <h1 class="mb-2">Page</h1>
+        <h1 class="mb-2">Users</h1>
         <div class="mb-3">
             <a href="{{ route('dashboardpage') }}" style="font-weight: 900; text-decoration: none;"><i class="fa-solid fa-house"></i> Dashboard</a> 
-            / <i class="fa-brands fa-chrome"></i><span> Page</span>
+            / <i class="fa-solid fa-user"></i><span> Users</span>
         </div>
 
         <div class="table-responsive" style="overflow: scroll; height: 390px;">

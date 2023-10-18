@@ -6,13 +6,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ Request::route()->getName() == 'userspage' ? 'active' : '' }}" href="{{ route('userspage') }}">
                 <i class="fa-solid fa-user"><span> Users</span></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fa-solid fa-person-chalkboard"><span> Instructor</span></i>
+            <a class="nav-link {{ Request::route()->getName() == 'instructorspage' ? 'active' : '' }}" href="{{ route('instructorspage') }}">
+                <i class="fa-solid fa-person-chalkboard"><span> Instructors</span></i>
             </a>
         </li>
         <li class="nav-item">
@@ -21,7 +21,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Request::route()->getName() == 'websitepage' ? 'active' : '' }}" href="{{ route('websitepage') }}">
+            <a class="nav-link" href="{{ route('homepage') }}">
                 <i class="fa-brands fa-chrome"><span> Page</span></i>
             </a>
         </li>

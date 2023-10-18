@@ -25,7 +25,8 @@ Route::get('/password_reset/{token}', [AuthController::class, 'PasswordReset'])-
 // ADMIN PANEL
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboardpage');
 Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
-Route::get('/website', [AdminController::class, 'Website'])->name('websitepage');
+Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('instructorspage');
+Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
 
 // INSTRUCTOR PANEL
 Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');

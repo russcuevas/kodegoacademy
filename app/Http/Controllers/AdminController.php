@@ -19,6 +19,18 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    public function Users()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->user_role !== 'admin') {
+                return redirect()->route('loginpage');
+            }
+        } else {
+            return redirect()->route('loginpage');
+        }
+        return view('admin.users');
+    }
+
     public function Course()
     {
         if (Auth::check()) {
@@ -41,5 +53,17 @@ class AdminController extends Controller
             return redirect()->route('loginpage');
         }
         return view('admin.website');
+    }
+
+    public function InstructorPage()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->user_role !== 'admin') {
+                return redirect()->route('loginpage');
+            }
+        } else {
+            return redirect()->route('loginpage');
+        }
+        return view('admin.instructors');
     }
 }
