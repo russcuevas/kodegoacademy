@@ -10,6 +10,32 @@
             / <i class="fa-solid fa-user"></i><span> Users</span>
         </div>
 
+
+        <a href="#" class="btn btn-primary mb-2" id="add-user-link" data-toggle="modal" data-target="#add-user-modal">Add user +</a>
+
+                <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addUserModalLabel">Add user</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addUserForm" action="" method="POST" class="addUserForm">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="email" class="text-black mb-2">Enter Email:</label>
+                                        <input type="email" class="form-control" id="forgot-email" name="email">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
         <div class="table-responsive" style="overflow: scroll; height: 390px;">
             <table id="myTable" class="display table-hover">
                 <thead>

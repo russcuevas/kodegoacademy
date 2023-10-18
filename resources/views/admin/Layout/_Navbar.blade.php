@@ -1,4 +1,3 @@
-<div id="dashboard" class="animate__animated animate__fadeIn" style="display: none;">
 <div class="header">
     <div class="logo-container">
         <img src="{{ asset('admins/images/favicon.png') }}" alt="" onclick="window.location.href = ('/dashboard');">
