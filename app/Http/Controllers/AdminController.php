@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -15,7 +16,7 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-    
+
         return view('admin.dashboard');
     }
 
@@ -28,7 +29,8 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-        return view('admin.users');
+        $users = User::where('user_role', 'user')->get();
+        return view('admin.users', compact('users'));
     }
 
     public function Course()
@@ -52,7 +54,7 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-        return view('admin.website');
+        return view('admin.website', compact('user'));
     }
 
     public function InstructorPage()
@@ -64,6 +66,7 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-        return view('admin.instructors');
+        $instructors = User::where('user_role', 'instructor')->get();
+        return view('admin.instructors', compact('instructors'));
     }
 }
