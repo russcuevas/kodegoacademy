@@ -8,13 +8,13 @@
             <div class="col-md-3 boxes">
                 <i class="fa-solid fa-user"><span> Total users</span></i>
                 <h4 class="mt-3">{{ $getTotalUsers }}</h4>
-                <a href="">View.</a>
+                <a href="{{ route('userspage'); }}">View.</a>
             </div>
 
             <div class="col-md-3 boxes">
                 <i class="fa-solid fa-person-chalkboard"><span> Total instructor</span></i>
                 <h4 class="mt-3">{{ $getTotalInstructors }}</h4>
-                <a href="">View.</a>
+                <a href="{{ route('instructorspage') }}">View.</a>
             </div>
 
             <div class="col-md-3 boxes">

@@ -20,7 +20,8 @@ Route::post('/loginrequest', [AuthController::class, 'LoginRequest'])->name('log
 Route::get('/registration', [AuthController::class, 'Registration'])->name('registrationpage');
 Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 Route::post('/forgot-password', [AuthController::class, 'ForgotPassword'])->name('forgotpassword');
-Route::get('/password_reset/{token}', [AuthController::class, 'PasswordReset'])->name('password.reset');
+Route::get('/password/reset/{token}', [AuthController::class, 'ForgotForm'])->name('password.reset');
+Route::post('/password/reset', [AuthController::class, 'Reset'])->name('resetform');
 
 // ADMIN PANEL
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboardpage');

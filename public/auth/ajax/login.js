@@ -6,7 +6,7 @@ $(document).ready(function () {
         var email = $('#email').val();
         var password = $('#password').val();
 
-        if (!email || !password){
+        if (!email || !password) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Warning',
@@ -48,8 +48,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var forgot_email = $('#forgot-email').val();
-        
-        if (!forgot_email){
+
+        if (!forgot_email) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Warning',
@@ -65,15 +65,22 @@ $(document).ready(function () {
             data: formData,
             success: function (response) {
                 console.log(response);
+
                 if (response.status === 200) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
                         text: response.message,
-                    })
+                    });
+                } else if (response.status === 400) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message,
+                    });
                 }
             },
-            error: function (xhr, status, error) {
+            error: function (xhr,) {
                 if (xhr.status === 404) {
                     Swal.fire({
                         icon: 'error',
@@ -84,6 +91,55 @@ $(document).ready(function () {
                     console.error("User not found with that email.");
                 }
             }
+        });
+    });
+});
+
+
+// FORGOT PASSWORD POST
+$(document).ready(function () {
+    $('.passwordResetForm').on('submit', function (e) {
+        e.preventDefault();
+
+        var formData = new formData(this);
+
+        $.ajax({
+            type: 'POST',
+            url: '/password/reset',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.message && response.redirect_route) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message,
+                    }).then(function () {
+                        window.location.href = response.redirect_route;
+                    });
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+                    var errorMessage = 'Validation Error:<br>';
+                    for (var key in errors) {
+                        errorMessage += errors[key].join(', ') + '<br>';
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validation Error',
+                        html: errorMessage,
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred.',
+                    });
+                }
+            },
         });
     });
 });

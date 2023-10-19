@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ForgotPassword;
+
 use App\Models\User;
+use App\Mail\ResetPasswordMail;
+use App\Models\PasswordReset;
+
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -87,76 +93,96 @@ class AuthController extends Controller
 
     public function ForgotPassword(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
         ]);
 
-        $email = $request->input('email');
-
-        $token = bin2hex(random_bytes(32));
-
-        $user = User::where('email', $email)->first();
-
-        if ($user) {
-            $existingReset = $user->passwordResets()->first();
-
-            if ($existingReset) {
-                $existingReset->update([
-                    'token' => $token,
-                ]);
-            } else {
-                $user->passwordResets()->create([
-                    'token' => $token,
-                ]);
-            }
-
-            try {
-                $mail = new PHPMailer(true);
-
-                $mail->isSMTP();
-                $mail->SMTPDebug = 0;
-                $mail->SMTPAuth = true;
-                $mail->SMTPSecure = 'tls';
-                $mail->Host = 'smtp.gmail.com';
-                $mail->Port = 587;
-                $mail->Username = 'russelarchiefoodorder@gmail.com';
-                $mail->Password = 'cjwitldatrerscln';
-
-                $mail->setFrom('russdev@gmail.com', 'KodeGo Company');
-                $mail->addAddress($email);
-
-                $mail->Subject = 'Password Reset Request';
-                $mail->Body = "To reset your password, click the following link: " . url('/password_reset', ['token' => $token]);
-
-                $mail->send();
-
-                return response()->json(['message' => 'Password reset request is sent successfully, please check your email to change your password.', 'status' => 200]);
-
-            } catch (Exception $e) {
-                return response()->json(['message' => 'Email could not be sent.', 'status' => 500]);
-            }
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 404,
+            ]);
         }
 
-        return response()->json(['message' => ''], 404);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'This email is not found',
+                'status' => 400,
+            ]);
+        }
+
+        $token = Str::random(60);
+
+        DB::table('password_resets')->updateOrInsert(
+            ['email' => $user->email],
+            ['token' => $token, 'created_at' => now()]
+        );
+
+        $resetLink = url('/password/reset/' . $token);
+
+        Mail::to($user->email)->send(new ResetPasswordMail($user->name, $resetLink));
+
+        return response()->json([
+            'message' => 'Reset link sent to your email',
+            'status' => 200,
+            'resetLink' => $resetLink,
+        ]);
     }
 
-    public function PasswordReset(Request $request, $token)
+    public function ForgotForm($token)
     {
-        $passwordReset = ForgotPassword::where('token', $token)->first();
-
-        if ($passwordReset) {
-            $user_id = $passwordReset->user_id;
-
-            $user = User::find($user_id);
-
-            if ($user) {
-                $email = $user->email;
-
-                return view('page.password_reset', ['token' => $token, 'email' => $email]);
-            }
-        } else {
-            return view('page.password_reset');
+        if (!$token) {
+            return redirect()->route('loginpage')->with('error', 'Invalid reset link');
         }
+
+        $passwordReset = PasswordReset::where('token', $token)->first();
+
+        if (!$passwordReset) {
+            return redirect()->route('loginpage')->with('error', 'Token not found or has expired try again');
+        }
+
+        return view('page.password_reset', ['token' => $token]);
     }
 
+    public function Reset(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'status' => 400,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $passwordReset = PasswordReset::where('token', $request->token)->first();
+
+        if (!$passwordReset) {
+            return response()->json([
+                'message' => 'Token expired, request a new password reset',
+                'status' => 422,
+                'redirect_route' => route('loginpage'),
+            ]);
+        }
+
+        $user = User::where('email', $passwordReset->email)->first();
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        DB::table('password_resets')->where('token', $request->token)->delete();
+
+        return response()->json([
+            'message' => 'Password reset successfully',
+            'status' => 200,
+            'redirect_route' => route('loginpage'),
+        ]);
+    }
 }

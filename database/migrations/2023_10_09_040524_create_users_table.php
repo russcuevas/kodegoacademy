@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('profile_picture', 255);
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('contact');
             $table->string('user_role')->default('user');
