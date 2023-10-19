@@ -24,7 +24,15 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 if (response.redirect_route) {
-                    window.location.href = response.redirect_route;
+                    HoldOn.open({
+                        theme: 'sk-dot',
+                        message: 'Logging in..'
+                    });
+
+                    setTimeout(function () {
+                        window.location.href = response.redirect_route;
+                        HoldOn.close();
+                    }, 1000)
                 }
             },
             error: function (xhr, status, error) {
@@ -57,6 +65,12 @@ $(document).ready(function () {
             });
             return;
         }
+
+        HoldOn.open({
+            theme: 'sk-dot',
+            message: 'Sending your request _'
+        });
+
         var formData = $(this).serialize();
 
         $.ajax({
@@ -67,12 +81,16 @@ $(document).ready(function () {
                 console.log(response);
 
                 if (response.status === 200) {
+                    HoldOn.close();
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
                         text: response.message,
                     });
+
+                    $('#forgot-email').val('');
                 } else if (response.status === 400) {
+                    HoldOn.close();
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
@@ -82,13 +100,12 @@ $(document).ready(function () {
             },
             error: function (xhr,) {
                 if (xhr.status === 404) {
+                    HoldOn.close();
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
                         text: "User not found with that email.",
                     });
-                } else {
-                    console.error("User not found with that email.");
                 }
             }
         });
@@ -101,7 +118,7 @@ $(document).ready(function () {
     $('.passwordResetForm').on('submit', function (e) {
         e.preventDefault();
 
-        var formData = new formData(this);
+        var formData = new FormData(this);
 
         $.ajax({
             type: 'POST',
@@ -118,27 +135,32 @@ $(document).ready(function () {
                     }).then(function () {
                         window.location.href = response.redirect_route;
                     });
+                } else {
+                    if (response.status === 400 && response.errors) {
+                        var errorMessage = '';
+                        for (var key in response.errors) {
+                            errorMessage += response.errors[key].join(', ') + '<br>';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            html: errorMessage,
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred.',
+                        });
+                    }
                 }
             },
             error: function (xhr) {
-                if (xhr.status === 422) {
-                    var errors = xhr.responseJSON.errors;
-                    var errorMessage = 'Validation Error:<br>';
-                    for (var key in errors) {
-                        errorMessage += errors[key].join(', ') + '<br>';
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Validation Error',
-                        html: errorMessage,
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'An error occurred.',
-                    });
-                }
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred.',
+                });
             },
         });
     });

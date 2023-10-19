@@ -126,7 +126,7 @@ class AuthController extends Controller
         Mail::to($user->email)->send(new ResetPasswordMail($user->name, $resetLink));
 
         return response()->json([
-            'message' => 'Reset link sent to your email',
+            'message' => 'Password reset request is sent successfully, please check your email to change your password.',
             'status' => 200,
             'resetLink' => $resetLink,
         ]);
@@ -151,7 +151,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'token' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|between:8,12',
         ]);
 
         if ($validator->fails()) {
