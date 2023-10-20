@@ -1,6 +1,6 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top" style="padding: 5px">
         <div class="container-fluid">
-            <a class="navbar-brand" href="home.php"><img class="navlogo" src="{{ asset('page/images/headerlogo.png') }}" alt=""></a>
+            <a class="navbar-brand" href="{{ route('homepage') }}"><img class="navlogo" src="{{ asset('page/images/headerlogo.png') }}" alt=""></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,19 +25,19 @@
                             <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="userDropdown">
-                        @auth
-                        @if (auth()->user()->user_role === 'user')
+                            @auth
+                            @if (auth()->user()->user_role === 'user')
                             <a class="dropdown-item" style="font-weight: 600;" href="#">
                                 <img style="height: 20px; width: 20px;" src="{{ asset('storage/auth/images/profile_pictures/' . Auth::user()->profile_picture) }}" alt=""> Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" style="font-weight: 600;"><i style="margin-left: 3px;" class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                        @elseif (auth()->user()->user_role === 'admin')
+                            @elseif (auth()->user()->user_role === 'admin')
                             <a class="dropdown-item" style="font-weight: 600;" href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
-                        @elseif (auth()->user()->user_role === 'instructor')
+                            @elseif (auth()->user()->user_role === 'instructor')
                             <a class="dropdown-item" style="font-weight: 600;" href="/instructordb"><i class="fa-solid fa-house"></i> Dashboard</a>
-                        @endif
-                        @else
+                            @endif
+                            @else
                             <a class="dropdown-item" style="font-weight: 600;" href="/login">Login</a>
-                        @endauth
+                            @endauth
                         </div>
                     </li>
                 </ul>

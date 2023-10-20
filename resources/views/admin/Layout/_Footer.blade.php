@@ -6,5 +6,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('instructor/js/datatable.js') }}"></script>
 
-</body>
-</html>
+    </body>
+
+    </html>
