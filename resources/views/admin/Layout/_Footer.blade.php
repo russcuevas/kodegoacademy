@@ -4,8 +4,11 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('instructor/js/datatable.js') }}"></script>
-
-    </body>
-
-    </html>
+    <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    {{-- AJAX --}}
+    <script src="{{ asset('admins/ajax/adduser.js')}}"></script>
+    {{-- CUSTOM JS --}}
+    <script src="{{ asset('admins/js/datatable.js') }}"></script>
+    <script src="{{ asset('admins/js/adduser.js')}}"></script>
+</body>
+</html>

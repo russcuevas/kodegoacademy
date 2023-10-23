@@ -29,6 +29,7 @@ Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboard
 Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
 Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('instructorspage');
 Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
+Route::post('/users/addusers', [AdminController::class, 'AddUsers'])->name('addusers');
 
 // INSTRUCTOR PANEL
 Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');
