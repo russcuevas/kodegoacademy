@@ -117,7 +117,7 @@ class AuthController extends Controller
 
             $imageNameOnly = pathinfo($imagePath, PATHINFO_BASENAME);
         } else {
-            $imageNameOnly = 'https://creazilla-store.fra1.digitaloceanspaces.com/icons/7915728/user-icon-md.png';
+            $imageNameOnly = 'default_profile.png';
         }
 
         User::create([
