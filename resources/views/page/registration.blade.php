@@ -6,7 +6,7 @@
     </div>
 
     <div class="row justify-content-center">
-        <form action="{{ route('registrationrequest') }}" method="POST" class="col-md-4 mt-3" enctype="multipart/form-data">
+        <form action="{{ route('registrationrequest') }}" method="POST" class="col-md-4 mt-3 registrationRequest" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="profile_picture">Profile picture</label>
@@ -19,23 +19,23 @@
 
             <div class="form-group">
                 <label for="name">Full name:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" >
             </div>
 
             <div class="form-group">
                 <label for="contact">Phone number:</label>
-                <input type="text" class="form-control" id="contact" name="contact" required pattern="[0-9]*" maxlength="11">
+                <input type="text" class="form-control" id="contact" name="contact"  pattern="[0-9]*" maxlength="11">
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" >
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
                 <div class="password-input-wrapper">
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" >
                     <span class="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
                 </div>
                 <span id="password-help" class="text-danger"></span>
@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label for="confirm-password">Confirm password:</label>
                 <div class="confirm-password-input-wrapper">
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" >
                     <span class="confirm-pass-toggle" onclick="toggleCPasswordVisibility()">&#x1F441;</span>
                 </div>
                 <span id="c-password-help" class="text-danger"></span>

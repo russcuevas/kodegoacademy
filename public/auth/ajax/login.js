@@ -35,7 +35,7 @@ $(document).ready(function () {
                     }, 1000)
                 }
             },
-            error: function (xhr, status, error) {
+            error: function (xhr) {
                 if (xhr.status === 401) {
                     Swal.fire({
                         icon: 'error',
@@ -155,7 +155,7 @@ $(document).ready(function () {
                     }
                 }
             },
-            error: function (xhr) {
+            error: function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
