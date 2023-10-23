@@ -84,7 +84,7 @@
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <td><img style="width: 50px; height: 50px;" src="{{ asset('storage/auth/images/profile_pictures/' . $user->profile_picture) }}" alt="$user->name"></td>
+                        <td><img style="width: 50px; height: 50px; border-radius: 50px;" src="{{ asset('storage/auth/images/profile_pictures/' . $user->profile_picture) }}" alt="$user->name"></td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->contact }}</td>
