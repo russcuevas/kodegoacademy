@@ -18,6 +18,7 @@ Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('su
 Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');
 Route::post('/loginrequest', [AuthController::class, 'LoginRequest'])->name('loginrequest');
 Route::get('/registration', [AuthController::class, 'Registration'])->name('registrationpage');
+Route::post('/registrationrequest', [AuthController::class, 'RegistrationRequest'])->name('registrationrequest');
 Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
 Route::post('/forgot-password', [AuthController::class, 'ForgotPassword'])->name('forgotpassword');
 Route::get('/password/reset/{token}', [AuthController::class, 'ForgotForm'])->name('password.reset');

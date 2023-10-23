@@ -37,7 +37,7 @@ function toggleCPasswordVisibility() {
     const confirmPassword = document.getElementById('confirm_password');
     const confirmPasswordToggle = document.querySelector('.confirm-pass-toggle');
 
-    if (confirmPassword.type === 'password'){
+    if (confirmPassword.type === 'password') {
         confirmPassword.type = 'text';
         confirmPasswordToggle.innerHTML = '&#x1F440;';
     } else {
@@ -83,4 +83,11 @@ $(document).ready(function () {
     });
 });
 
+// PREVENT NON NUMERIC CHARACTERS
+document.getElementById('contact').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+    if (e.target.value.length > 11) {
+        e.target.value = e.target.value.slice(0, 11);
+    }
+});
 

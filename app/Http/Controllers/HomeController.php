@@ -105,7 +105,6 @@ class HomeController extends Controller
             $mail->send();
             $response['success'] = true;
             $response['message'] = 'Email sent successfully';
-
         } catch (Exception $e) {
             $response['success'] = false;
             $response['message'] = 'Email could not be sent. ' . $mail->ErrorInfo;
