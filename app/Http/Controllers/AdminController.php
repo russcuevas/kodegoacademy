@@ -89,9 +89,55 @@ class AdminController extends Controller
         ]);
     }
 
-    public function EditUsers()
+    public function UpdateUsers(Request $request, $id)
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found',
+                'status' => 404
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|min:8',
+            'contact' => 'required|min:11',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 422,
+            ]);
+        }
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->contact = $request->input('contact');
+
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = 'profile_' . Str::random(10) . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/auth/images/profile_pictures', $imageName);
+
+            $imageNameOnly = pathinfo($imagePath, PATHINFO_BASENAME);
+            $user->profile_picture = $imageNameOnly;
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'status' => 200,
+        ]);
     }
+
 
     public function DeleteUsers(Request $request, $id)
     {

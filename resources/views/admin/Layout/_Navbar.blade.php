@@ -17,7 +17,7 @@
 
         <div class="dropdown-content" id="dropdown-content">
             <a href="#" data-toggle="modal" data-target="#changePasswordModal">
-                <i class="fa-solid fa-lock"></i> Change pass
+                <i class="fa-solid fa-lock"></i> Change pw
             </a>
             <a href="{{ route('logout') }}">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout

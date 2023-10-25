@@ -7,9 +7,10 @@
     <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     {{-- AJAX --}}
     <script src="{{ asset('admins/ajax/users/adduser.js')}}"></script>
+    <script src="{{ asset('admins/ajax/users/updateuser.js')}}"></script>
     <script src="{{ asset('admins/ajax/users/deleteuser.js')}}"></script>
     {{-- CUSTOM JS --}}
     <script src="{{ asset('admins/js/datatable.js') }}"></script>
-    <script src="{{ asset('admins/js/adduser.js')}}"></script>
+    <script src="{{ asset('admins/js/usersdashboard.js')}}"></script>
 </body>
 </html>

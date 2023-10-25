@@ -83,6 +83,71 @@
 
         {{-- END VIEW MODAL --}}
 
+
+        {{-- EDIT MODAL --}}
+        @foreach ($users as $user)
+            <div class="modal fade" id="updateUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="updateUserModalLabel{{ $user->id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateUserModalLabel{{ $user->id }}">Edit User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" id="updateUserForm" class="updateUserForm" action="{{ route('updateusers', ['id' => $user->id]) }}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="profile_pictures">Profile picture</label>
+                                    <input type="file" id="profile_pictures" name="profile_picture" accept=".jpg, .jpeg, .png" style="display: none;"><br>
+                                    <label for="profile_pictures" id="profile_picture_update">
+                                    <img style="height: 100px; width: 100px; border-radius: 50px;" src="{{ asset('storage/auth/images/profile_pictures/' . $user->profile_picture) }}" alt="{{ $user->name }}">
+                                        Click to choose a picture
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="update_name" name="name" value="{{ $user->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="update_email" name="email" value="{{ $user->email }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact">Phone number:</label>
+                                    <input type="text" class="form-control" id="update_contact" name="contact"  pattern="[0-9]*" maxlength="11" value="{{ $user->contact }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <div class="password-input-wrapper">
+                                        <input type="password" class="form-control" id="update_password" name="password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm password:</label>
+                                    <div class="confirm-password-input-wrapper">
+                                        <input type="password" class="form-control" id="update_confirm_password" name="confirm_password" >
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+        {{-- END EDIT MODAL --}}
+
+
+        {{-- DELETE MODAL --}}
         @foreach ($users as $user)
         <div class="modal fade" id="deleteUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -108,3 +173,4 @@
             </div>
         </div>
         @endforeach
+        {{-- END DELETE MODAL --}}

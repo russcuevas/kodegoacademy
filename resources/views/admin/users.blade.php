@@ -11,7 +11,7 @@
         </div>
 
         {{-- INCLUDING MODAL --}}
-        @include('admin.Modal._Users')
+        @include('admin.Modal._Usersmodal')
         {{-- MODAL END --}}
 
         <div class="table-responsive" style="overflow: scroll; height: 390px;">
@@ -37,11 +37,12 @@
                             <a href="#" style="text-decoration: none" data-toggle="modal" data-target="#viewUserModal{{ $user->id }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <i class="fa-solid fa-pen-to-square"></i>
-<a href="#" style="text-decoration: none" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
-    <i class="fa-solid fa-trash"></i>
-</a>
-
+                            <a href="#" style="text-decoration: none;" data-toggle="modal" data-target="#updateUserModal{{ $user->id }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="#" style="text-decoration: none" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

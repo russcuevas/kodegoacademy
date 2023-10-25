@@ -13,7 +13,7 @@ $(document).ready(function () {
                 if (response.status === 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Deleted successfully',
+                        title: 'Success',
                         text: response.message,
                     });
                     $('#deleteUserModal' + response.id).modal('hide');
@@ -24,12 +24,12 @@ $(document).ready(function () {
                 } else if (response.status === 404) {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Deleted error',
+                        title: 'Error',
                         text: response.message,
                     });
                 }
             },
-            error: function (xhr, error) {
+            error: function (error) {
                 console.log(error);
             }
         });
