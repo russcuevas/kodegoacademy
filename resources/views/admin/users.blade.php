@@ -38,7 +38,10 @@
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                             <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
+<a href="#" style="text-decoration: none" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
+    <i class="fa-solid fa-trash"></i>
+</a>
+
                         </td>
                     </tr>
                     @endforeach

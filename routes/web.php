@@ -30,6 +30,7 @@ Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
 Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('instructorspage');
 Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
 Route::post('/users/addusers', [AdminController::class, 'AddUsers'])->name('addusers');
+Route::delete('/users/delete/{id}', [AdminController::class, 'DeleteUsers'])->name('deleteusers');
 
 // INSTRUCTOR PANEL
 Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');

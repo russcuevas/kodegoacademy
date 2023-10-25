@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    // START DASHBOARD
     public function Dashboard()
     {
         if (Auth::check()) {
@@ -24,6 +25,10 @@ class AdminController extends Controller
         $getTotalInstructors = User::where('user_role', 'instructor')->count();
         return view('admin.dashboard', compact('getTotalUsers', 'getTotalInstructors'));
     }
+
+    // END DASHBOARD
+
+    // START MANAGE USERS
 
     public function Users()
     {
@@ -84,6 +89,34 @@ class AdminController extends Controller
         ]);
     }
 
+    public function EditUsers()
+    {
+    }
+
+    public function DeleteUsers(Request $request, $id)
+    {
+        $users = User::find($id);
+
+        if (!$users) {
+            return response()->json([
+                'message' => 'User not found',
+                'status' => 404
+            ]);
+        }
+
+        $users->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully',
+            'status' => 200,
+        ]);
+    }
+
+    // END MANAGE USERS
+
+
+    // MANAGE COURSE
+
     public function Course()
     {
         if (Auth::check()) {
@@ -95,6 +128,10 @@ class AdminController extends Controller
         }
         return view('admin.course');
     }
+
+    // END MANAGE COURSE
+
+    // WEBSITE FOR ADMIN
 
     public function Website()
     {
@@ -108,6 +145,10 @@ class AdminController extends Controller
         return view('admin.website', compact('user'));
     }
 
+    // END WEBSITE FOR ADMIN
+
+    // START MANAGE INSTRUCTOR
+
     public function InstructorPage()
     {
         if (Auth::check()) {
@@ -120,4 +161,6 @@ class AdminController extends Controller
         $instructors = User::where('user_role', 'instructor')->get();
         return view('admin.instructors', compact('instructors'));
     }
+
+    // END MANAGE INSTRUCTOR
 }
