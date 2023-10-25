@@ -33,7 +33,7 @@
                         <!-- <td>{{ $instructor->password }}</td> -->
                         <td>{{ $instructor->contact }}</td>
                         <td>
-                            <a href="#" style="text-decoration: none" data-toggle="modal" data-target="#viewInstructorModal{{ $instructor->id }}">
+                            <a href="#" style="text-decoration: none; color: #41a5c1" data-toggle="modal" data-target="#viewInstructorModal{{ $instructor->id }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                             <i class="fa-solid fa-pen-to-square"></i>

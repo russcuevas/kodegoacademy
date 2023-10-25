@@ -100,9 +100,9 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="profile_pictures">Profile picture</label>
-                                    <input type="file" id="profile_pictures" name="profile_picture" accept=".jpg, .jpeg, .png" style="display: none;"><br>
-                                    <label for="profile_pictures" id="profile_picture_update">
+                                    <label for="profile_pictures{{ $user->id }}">Profile picture</label>
+                                    <input type="file" id="profile_pictures{{ $user->id }}" class="profile-input" name="profile_picture" accept=".jpg, .jpeg, .png" style="display: none;"><br>
+                                    <label for="profile_pictures{{ $user->id }}" class="profile-picture-update">
                                     <img style="height: 100px; width: 100px; border-radius: 50px;" src="{{ asset('storage/auth/images/profile_pictures/' . $user->profile_picture) }}" alt="{{ $user->name }}">
                                         Click to choose a picture
                                     </label>

@@ -34,13 +34,13 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->contact }}</td>
                         <td>
-                            <a href="#" style="text-decoration: none" data-toggle="modal" data-target="#viewUserModal{{ $user->id }}">
+                            <a href="#" style="text-decoration: none; color: #41a5c1" data-toggle="modal" data-target="#viewUserModal{{ $user->id }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a href="#" style="text-decoration: none;" data-toggle="modal" data-target="#updateUserModal{{ $user->id }}">
+                            <a href="#" style="text-decoration: none; color: #7EAA92" data-toggle="modal" data-target="#updateUserModal{{ $user->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            <a href="#" style="text-decoration: none" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
+                            <a href="#" style="text-decoration: none; color: #FF6969" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
