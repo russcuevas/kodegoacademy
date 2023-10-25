@@ -208,5 +208,51 @@ class AdminController extends Controller
         return view('admin.instructors', compact('instructors'));
     }
 
+    public function AddInstructors(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'profile_picture' => 'image|mimes:jpeg,jpg,png',
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+            'contact' => 'required|min:11',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400,
+            ]);
+        }
+
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = 'profile_' . Str::random(10) . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/auth/images/profile_pictures', $imageName);
+
+            $imageNameOnly = pathinfo($imagePath, PATHINFO_BASENAME);
+        } else {
+            $imageNameOnly = 'instructor_profile.png';
+        }
+
+        User::create([
+            'profile_picture' => $imageNameOnly,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'user_role' => 'instructor',
+            'contact' => $request->input('contact'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'message' => 'Add instructor successfully',
+            'status' => 200,
+        ]);
+    }
+
     // END MANAGE INSTRUCTOR
 }
