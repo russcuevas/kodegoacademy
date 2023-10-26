@@ -30,9 +30,9 @@
             </div>
             <div class="col-md-3">
                 <div style="position: relative;">
-    <canvas id="pieChart"></canvas>
-    <div id="redCircle"></div>
-</div>
+                    <canvas id="pieChart"></canvas>
+                    <div id="redCircle"></div>
+                </div>
             </div>
 
         </div>

@@ -23,6 +23,7 @@ new Chart(barCtx, {
 
 
 
+// PIE CHART INTEGRATION
 function initializePieChart(data) {
     var pieCtx = document.getElementById('pieChart').getContext('2d');
     window.pieChart = new Chart(pieCtx, {
@@ -39,12 +40,9 @@ function updatePieChart() {
         success: function (data) {
             if (window.pieChart) {
                 window.pieChart.data.datasets = data.datasets;
-
-                // Check if there's no data available, and show the red circle
                 if (data.datasets[0].data.every(count => count === 0)) {
                     document.getElementById('redCircle').style.display = 'block';
 
-                    // Set both colors to red
                     data.datasets[0].backgroundColor = ['red', 'red'];
                 } else {
                     document.getElementById('redCircle').style.display = 'none';
@@ -66,15 +64,11 @@ $.ajax({
     method: 'GET',
     success: function (data) {
         initializePieChart(data);
-
-        // Check if there's no data available, and show the red circle
         if (data.datasets[0].data.every(count => count === 0)) {
             document.getElementById('redCircle').style.display = 'block';
 
-            // Set both colors to red
             data.datasets[0].backgroundColor = ['red', 'red'];
         }
-
         window.pieChart.update();
     },
     error: function (error) {
