@@ -23,6 +23,20 @@
                 <a href="">View.</a>
             </div>
         </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-8">
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="col-md-3">
+                <div style="position: relative;">
+    <canvas id="pieChart"></canvas>
+    <div id="redCircle"></div>
+</div>
+            </div>
+
+        </div>
+        
     </div>
 </div>
 

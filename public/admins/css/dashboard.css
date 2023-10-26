@@ -4,6 +4,18 @@ body {
     font-family: 'Poppins', sans-serif !important;
 }
 
+#redCircle {
+    background-color: red;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
 /* Navbar */
 .header {
     background-color: #333;
@@ -51,6 +63,7 @@ body {
     width: 250px;
     height: calc(100vh - 60px);
     transition: all 0.3s;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar.active {
@@ -258,6 +271,16 @@ body {
 }
 
 @media (max-width: 768px) {
+    #redCircle {
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+
     .boxes {
         background-color: #fff;
         border-radius: 5px;
