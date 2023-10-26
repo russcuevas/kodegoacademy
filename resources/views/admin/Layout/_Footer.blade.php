@@ -8,11 +8,9 @@
     {{-- AJAX --}}
 
     {{-- AJAX FOR USERS --}}
-    <script src="{{ asset('admins/ajax/users/adduser.js')}}"></script>
-    <script src="{{ asset('admins/ajax/users/updateuser.js')}}"></script>
-    <script src="{{ asset('admins/ajax/users/deleteuser.js')}}"></script>
+    <script src="{{ asset('admins/ajax/users/_Userajax.js')}}"></script>
     {{-- AJAX FOR INSTRUCTORS --}}
-    <script src="{{ asset('admins/ajax/instructors/addinstructor.js')}}"></script>
+    <script src="{{ asset('admins/ajax/instructors/_Instructorsajax.js')}}"></script>
     {{-- CUSTOM JS --}}
     <script src="{{ asset('admins/js/datatable.js') }}"></script>
     <script src="{{ asset('admins/js/usersdashboard.js')}}"></script>

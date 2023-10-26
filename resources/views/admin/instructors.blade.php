@@ -36,8 +36,12 @@
                             <a href="#" style="text-decoration: none; color: #41a5c1" data-toggle="modal" data-target="#viewInstructorModal{{ $instructor->id }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
+                            <a href="#" style="text-decoration: none; color: #7EAA92" data-toggle="modal" data-target="#updateInstructorModal{{ $instructor->id}}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="#" style="text-decoration: none; color: #FF6969" data-toggle="modal" data-target="#deleteInstructorModal{{ $instructor->id}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach

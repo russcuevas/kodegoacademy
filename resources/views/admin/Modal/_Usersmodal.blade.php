@@ -133,7 +133,7 @@
                                         <input type="password" class="form-control" id="update_confirm_password" name="confirm_password" >
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
                             </form>
                         </div>
                         <div class="modal-footer">

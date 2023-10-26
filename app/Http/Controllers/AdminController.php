@@ -139,7 +139,7 @@ class AdminController extends Controller
     }
 
 
-    public function DeleteUsers(Request $request, $id)
+    public function DeleteUsers($id)
     {
         $users = User::find($id);
 
@@ -254,5 +254,72 @@ class AdminController extends Controller
         ]);
     }
 
+    // UPDATE INSTRUCTOR
+    public function UpdateInstructors(Request $request, $id)
+    {
+        $instructors = User::find($id);
+
+        if (!$instructors) {
+            return response()->json([
+                'message' => 'Instructor not found',
+                'status' => 404,
+            ]);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $instructors->id,
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 422,
+            ]);
+        }
+
+        $instructors->name = $request->input('name');
+        $instructors->email = $request->input('email');
+        $instructors->password = Hash::make($request->input('password'));
+        $instructors->contact = $request->input('contact');
+
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture');
+            $imageName = 'profile_' . Str::random(10) . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/auth/images/profile_pictures', $imageName);
+
+            $imageNameOnly = pathinfo($imagePath, PATHINFO_BASENAME);
+            $instructors->profile_picture = $imageNameOnly;
+        }
+
+        $instructors->save();
+
+        return response()->json([
+            'message' => 'Instructor updated successfully',
+            'status' => 200,
+        ]);
+    }
+
+    public function DeleteInstructors($id)
+    {
+        $instructors = User::find($id);
+
+        if (!$instructors) {
+            return response()->json([
+                'message' => 'Instructors not found',
+                'status' => 404
+            ]);
+        }
+
+        $instructors->delete();
+
+        return response()->json([
+            'message' => 'Instructor deleted successfully',
+            'status' => 200
+        ]);
+    }
     // END MANAGE INSTRUCTOR
 }

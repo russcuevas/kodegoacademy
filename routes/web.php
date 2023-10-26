@@ -37,7 +37,8 @@ Route::delete('/users/delete/{id}', [AdminController::class, 'DeleteUsers'])->na
 
 // ADMIN PANEL INSTRUCTORS CRUD
 Route::post('/instructors/addinstructors', [AdminController::class, 'AddInstructors'])->name('addinstructors');
-
+Route::put('/instructors/update/{id}', [AdminController::class, 'UpdateInstructors'])->name('updateinstructors');
+Route::delete('/instructors/delete/{id}', [AdminController::class, 'DeleteInstructors'])->name('deleteinstructors');
 
 // INSTRUCTOR PANEL
 Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');
