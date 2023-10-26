@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     {{-- AJAX --}}
-
+    <script src="{{ asset('admins/ajax/_Dashboardajax.js')}}"></script>
     {{-- AJAX FOR USERS --}}
     <script src="{{ asset('admins/ajax/users/_Userajax.js')}}"></script>
     {{-- AJAX FOR INSTRUCTORS --}}
