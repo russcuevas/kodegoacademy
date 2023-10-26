@@ -16,7 +16,7 @@
         </div>
 
         <div class="dropdown-content" id="dropdown-content">
-            <a href="#" data-toggle="modal" data-target="#changePasswordModal">
+            <a href="#" data-toggle="modal" data-target="#changePasswordModal{{ Auth::user()->id }}">
                 <i class="fa-solid fa-lock"></i> Change pw
             </a>
             <a href="{{ route('logout') }}">
@@ -26,33 +26,4 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Add your change password form here -->
-                <form>
-                    <div class="form-group">
-                        <label for="newPassword">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('admin.Modal._Changepassmodal');

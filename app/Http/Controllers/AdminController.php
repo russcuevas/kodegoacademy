@@ -26,6 +26,32 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('getTotalUsers', 'getTotalInstructors'));
     }
 
+    public function ChangePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ]);
+        }
+
+        $user = Auth::user();
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return response()->json([
+            'message' => 'Password changed successfully',
+            'status' => 200
+        ]);
+    }
+
     // END DASHBOARD
 
     // START MANAGE USERS

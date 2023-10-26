@@ -30,6 +30,8 @@ Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
 Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('instructorspage');
 Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
 
+Route::post('/admin/changepassword', [AdminController::class, 'ChangePassword'])->name('changepassword');
+
 // ADMIN PANEL USERS CRUD
 Route::post('/users/addusers', [AdminController::class, 'AddUsers'])->name('addusers');
 Route::put('/users/update/{id}', [AdminController::class, 'UpdateUsers'])->name('updateusers');
