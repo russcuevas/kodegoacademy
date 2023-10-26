@@ -6,9 +6,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     {{-- AJAX --}}
+
+    {{-- AJAX FOR USERS --}}
     <script src="{{ asset('admins/ajax/users/adduser.js')}}"></script>
     <script src="{{ asset('admins/ajax/users/updateuser.js')}}"></script>
     <script src="{{ asset('admins/ajax/users/deleteuser.js')}}"></script>
+    {{-- AJAX FOR INSTRUCTORS --}}
+    <script src="{{ asset('admins/ajax/instructors/addinstructor.js')}}"></script>
     {{-- CUSTOM JS --}}
     <script src="{{ asset('admins/js/datatable.js') }}"></script>
     <script src="{{ asset('admins/js/usersdashboard.js')}}"></script>
