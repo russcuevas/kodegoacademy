@@ -32,6 +32,7 @@ Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('in
 Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
 Route::get('/get-pie-chart', [ChartController::class, 'getPieChartData']);
 
+// ADMIN CHANGE PASSWORD
 Route::post('/admin/changepassword', [AdminController::class, 'ChangePassword'])->name('changepassword');
 
 // ADMIN PANEL USERS CRUD
@@ -47,3 +48,6 @@ Route::delete('/instructors/delete/{id}', [AdminController::class, 'DeleteInstru
 // INSTRUCTOR PANEL
 Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard'])->name('instructordb');
 Route::get('/enroll', [InstructorController::class, 'InstructorEnroll'])->name('enrollpage');
+
+// INSTRUCTOR CHANGE PASSWORD
+Route::post('/instructor/changepassword', [])->name('instructorchangepassword');

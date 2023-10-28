@@ -16,9 +16,12 @@
         </div>
 
         <div class="dropdown-content" id="dropdown-content">
-            <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" data-toggle="modal" data-target="#changePasswordModal{{ Auth::user()->id }}">
+                <i class="fa-solid fa-lock"></i> Change pw
+            </a>
             <a href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
     </div>
-
 </div>
+
+@include('instructor.Modal._Changepassmodal');
