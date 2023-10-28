@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+#redCircle {
+    background-color: red;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
 /* Navbar */
 .header {
     background-color: #333;
@@ -45,6 +63,7 @@
     width: 250px;
     height: calc(100vh - 60px);
     transition: all 0.3s;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar.active {
@@ -73,7 +92,7 @@
     text-align: left;
 }
 
-.nav-link i.toggle-icon{
+.nav-link i.toggle-icon {
     display: none;
 }
 
@@ -90,7 +109,7 @@
 
 
 /* DATA TABLES */
-.main-content{
+.main-content {
     margin-left: 180px;
     margin-top: 120px;
     background-color: #fff;
@@ -120,8 +139,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #loading-text {
@@ -157,6 +181,7 @@
     height: auto;
 }
 
+
 #myTable {
     font-size: 20px;
     width: 100%;
@@ -190,7 +215,7 @@
     border-radius: 10px;
 }
 
-#menu-toggle{
+#menu-toggle {
     margin-left: 30px;
     cursor: pointer;
 }
@@ -209,7 +234,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 0;
     top: 100%;
@@ -240,12 +265,22 @@
     margin-right: 20px;
 }
 
-.boxes a{
+.boxes a {
     font-weight: 900;
     text-decoration: none;
 }
 
 @media (max-width: 768px) {
+    #redCircle {
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+
     .boxes {
         background-color: #fff;
         border-radius: 5px;
@@ -256,7 +291,7 @@
         margin-bottom: 10px;
     }
 
-    .mb-2{
+    .mb-2 {
         font-size: 30px;
     }
 
@@ -269,15 +304,16 @@
         display: block;
     }
 
-    #menu-toggle{
+    #menu-toggle {
         display: block;
         margin: 0;
     }
 
-    .mb-3{
+    .mb-3 {
         font-size: 13px;
         margin-bottom: 20px !important;
     }
+
     #myTable {
         font-size: 15px;
     }
@@ -339,11 +375,11 @@
         display: none;
     }
 
-    .logo-container span{
+    .logo-container span {
         display: none;
     }
 
-    .main-content{
+    .main-content {
         font-size: 15px;
         margin-left: 5px;
         margin-top: 120px;
