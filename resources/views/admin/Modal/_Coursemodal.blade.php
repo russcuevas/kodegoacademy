@@ -45,7 +45,7 @@
                                 <tr>
                                     <th>Position</th>
                                     <th>Course</th>
-                                    <th>Actions</th>
+                                    {{-- <th>Actions</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,11 +54,11 @@
                                         <tr>
                                             <td>{{ $position->position }}</td>
                                             <td>{{ $course->course }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <a href=""><i class="fa-solid fa-pen"></i></a>
                                                 |
                                                 <a href=""><i class="fa-solid fa-x"></i></a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 @endforeach
