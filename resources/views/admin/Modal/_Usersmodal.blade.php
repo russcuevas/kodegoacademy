@@ -1,5 +1,5 @@
         {{-- ADD USER MODAL --}}
-        <a href="#" class="btn btn-primary mb-2" id="add-user-link" data-toggle="modal" data-target="#add-user-modal">Add user +</a>
+        <a href="#" class="btn btn-primary mb-2 add-user-button" id="add-user-link" data-toggle="modal" data-target="#add-user-modal" style="font-size: 20px">Add user +</a>
 
         <div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

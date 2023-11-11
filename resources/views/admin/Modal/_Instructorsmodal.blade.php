@@ -1,5 +1,5 @@
         {{-- ADD INSTRUCTOR MODAL --}}
-        <a href="#" class="btn btn-primary mb-2" id="add-instructor-link" data-toggle="modal" data-target="#add-instructor-modal">Add instructor +</a>
+        <a href="#" class="btn btn-primary mb-2" id="add-instructor-link" data-toggle="modal" data-target="#add-instructor-modal" style="font-size: 20px">Add instructor +</a>
 
         <div class="modal fade" id="add-instructor-modal" tabindex="-1" role="dialog" aria-labelledby="addInstructorModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
