@@ -17,7 +17,8 @@
                 <thead>
                     <tr>
                         <th>Course picture</th>
-                        <th>Course offered</th>
+                        <th>Position</th>
+                        <th>Course</th>
                         <th>Course description</th>
                         <th>Instructor</th>
                         <th>Actions</th>
@@ -26,7 +27,8 @@
                 <tbody>
                     <tr>
                         <td><img src="" alt="Sample"></td>
-                        <td>Backend/PHP Mysql</td>
+                        <td>Backend</td>
+                        <td>PHP Mysql</td>
                         <td>Enhance your backend skills</td>
                         <td>Archie De Vera</td>
                         <td>
