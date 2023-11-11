@@ -11,26 +11,32 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="addPositionForm" action="" method="POST" class="addPositionForm">
+                        <form id="addPositionForm" action="{{ route('addposition') }}" method="POST" class="addPositionForm">
                         @csrf
                         <div class="form-group">
                             <label for="position">Position:</label>
                             <input type="text" name="position" class="form-control">
                             <button type="submit" class="btn btn-primary mt-2">Add position</button>
                         </div>
+                        </form>
+
                         <hr>
-                        </form id="addCourseForm" action="" method="POST" class="addCourseForm">
+
+                        <form id="addCourseForm" action="" method="POST" class="addCourseForm">
                         @csrf
                         <div class="form-group">
                              <label for="position_id">Postion:</label>
                              <select name="position_id" id="position_id" class="form-control">
-                                <option value="">Backend</option>
+                                @foreach ($positions as $position)
+                                <option value="{{ $position->id }}">{{ $position->position }}</option>   
+                                @endforeach
                              </select>
                              <label for="course">Course:</label>
                              <input type="text" name="course" class="form-control">
                              <button type="submit" class="btn btn-primary mt-2">Add course</button>
                         </div>
                         </form>
+
                         <hr>
                         <h5>Course list</h5>
                         <table class="table table-condensed">
@@ -42,14 +48,17 @@
                                         </tr>
                                 </thead>
                                 <tbody>
+                                        @foreach ($positions as $position)
                                         <tr>
-                                            <td>Backend</td>
-                                            <td>PHP/MYSQL</td>
+                                            <td>{{ $position->position}}</td>
+                                            <td></td>
                                             <td>
-                                                <a href="">Update</a>
-                                                <a href="">Delete</a>
+                                                <a href=""><i class="fa-solid fa-pen"></i></a>
+                                                |
+                                                <a href=""><i class="fa-solid fa-x"></i></a>
                                             </td>    
                                         </tr>
+                                        @endforeach
                                 </tbody>
                         </table>
                     </div>

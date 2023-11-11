@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -198,7 +199,32 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
-        return view('admin.course');
+        $positions = Position::all();
+        return view('admin.course', compact('positions'));
+    }
+
+    public function AddPosition(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'position' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400,
+            ]);
+        }
+
+        Position::create([
+            'position' => $request->input('position'),
+        ]);
+
+        return response()->json([
+            'message' => 'Add position successfully',
+            'status' => 200,
+        ]);
     }
 
     // END MANAGE COURSE
