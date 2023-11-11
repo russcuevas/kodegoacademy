@@ -12,6 +12,8 @@
     <script src="{{ asset('admins/ajax/users/_Userajax.js')}}"></script>
     {{-- AJAX FOR INSTRUCTORS --}}
     <script src="{{ asset('admins/ajax/instructors/_Instructorsajax.js')}}"></script>
+    {{-- AJAX FOR COURSE --}}
+    <script src="{{ asset('admins/ajax/course/_Courseajax.js') }} "></script>
     {{-- CUSTOM JS --}}
     <script src="{{ asset('admins/js/datatable.js') }}"></script>
     <script src="{{ asset('admins/js/usersdashboard.js')}}"></script>
