@@ -12,4 +12,9 @@ class Position extends Model
     protected $fillable = [
         'position'
     ];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

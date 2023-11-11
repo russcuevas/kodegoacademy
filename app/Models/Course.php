@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'course',
+    ];
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 }

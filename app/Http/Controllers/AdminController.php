@@ -227,6 +227,34 @@ class AdminController extends Controller
         ]);
     }
 
+    public function AddCourse(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'position_id' => 'required|exists:positions,id',
+            'course' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400,
+            ]);
+        }
+
+        $position = Position::findOrFail($request->position_id);
+
+        $course = $position->courses()->create([
+            'course' => $request->input('course'),
+        ]);
+
+        return response()->json([
+            'message' => 'Add course successfully',
+            'data' => $course,
+            'status' => 200,
+        ]);
+    }
+
     // END MANAGE COURSE
 
     // WEBSITE FOR ADMIN

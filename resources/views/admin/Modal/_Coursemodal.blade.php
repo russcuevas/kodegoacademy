@@ -22,44 +22,47 @@
 
                         <hr>
 
-                        <form id="addCourseForm" action="" method="POST" class="addCourseForm">
-                        @csrf
-                        <div class="form-group">
-                             <label for="position_id">Postion:</label>
-                             <select name="position_id" id="position_id" class="form-control">
-                                @foreach ($positions as $position)
-                                <option value="{{ $position->id }}">{{ $position->position }}</option>   
-                                @endforeach
-                             </select>
-                             <label for="course">Course:</label>
-                             <input type="text" name="course" class="form-control">
-                             <button type="submit" class="btn btn-primary mt-2">Add course</button>
-                        </div>
+                        <form id="addCourseForm" action="{{ route('addcourse') }}" method="POST" class="addCourseForm">
+                            @csrf
+                            <div class="form-group">
+                                <label for="position_id">Position:</label>
+                                <select name="position_id" id="position_id" class="form-control">
+                                    @foreach ($positions as $position)
+                                        <option value="{{ $position->id }}">{{ $position->position }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="course">Course:</label>
+                                <input type="text" name="course" class="form-control">
+                                <button type="submit" class="btn btn-primary mt-2">Add course</button>
+                            </div>
                         </form>
 
                         <hr>
+
                         <h5>Course list</h5>
                         <table class="table table-condensed">
-                                <thead>
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Course</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($positions as $position)
+                                    @foreach ($position->courses as $course)
                                         <tr>
-                                            <th>Position</th>
-                                            <th>Course</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                        @foreach ($positions as $position)
-                                        <tr>
-                                            <td>{{ $position->position}}</td>
-                                            <td></td>
+                                            <td>{{ $position->position }}</td>
+                                            <td>{{ $course->course }}</td>
                                             <td>
                                                 <a href=""><i class="fa-solid fa-pen"></i></a>
                                                 |
                                                 <a href=""><i class="fa-solid fa-x"></i></a>
-                                            </td>    
+                                            </td>
                                         </tr>
-                                        @endforeach
-                                </tbody>
+                                    @endforeach
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
