@@ -22,7 +22,8 @@ class HomeController extends Controller
 
     public function Course()
     {
-        return view('page.course');
+        $offered_course = Offered::with(['position', 'course', 'user'])->get();
+        return view('page.course', compact('offered_course'));
     }
 
     public function Contact()
