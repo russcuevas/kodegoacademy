@@ -2,7 +2,7 @@
         <a href="#" class="btn btn-primary mb-2" id="add-tech-link" data-toggle="modal" data-target="#add-tech-modal" style="font-size: 20px">Add techstacks +</a>
 
         <div class="modal fade" id="add-tech-modal" tabindex="-1" role="dialog" aria-labelledby="addTechModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addTechModal">Add techstacks</h5>
@@ -11,63 +11,74 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="addPositionForm" action="{{ route('addposition') }}" method="POST" class="addPositionForm">
-                        @csrf
-                        <div class="form-group">
-                            <label for="position">Position:</label>
-                            <input type="text" name="position" class="form-control">
-                            <button type="submit" class="btn btn-primary mt-2">Add position</button>
-                        </div>
-                        </form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form id="addPositionForm" action="{{ route('addposition') }}" method="POST" class="addPositionForm">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="position">Position:</label>
+                                        <input type="text" name="position" class="form-control">
+                                        <button type="submit" class="btn btn-primary mt-2">Add position</button>
+                                    </div>
+                                </form>
 
-                        <hr>
+                                <hr>
 
-                        <form id="addCourseForm" action="{{ route('addcourse') }}" method="POST" class="addCourseForm">
-                            @csrf
-                            <div class="form-group">
-                                <label for="position_id">Position:</label>
-                                <select name="position_id" id="position_id" class="form-control">
-                                    @foreach ($positions as $position)
-                                        <option value="{{ $position->id }}">{{ $position->position }}</option>
-                                    @endforeach
-                                </select>
-                                <label for="course">Course:</label>
-                                <input type="text" name="course" class="form-control">
-                                <button type="submit" class="btn btn-primary mt-2">Add course</button>
+                                <form id="addCourseForm" action="{{ route('addcourse') }}" method="POST" class="addCourseForm">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="position_id">Position:</label>
+                                        <select name="position_id" id="position_id" class="form-control">
+                                            @foreach ($positions as $position)
+                                                <option value="{{ $position->id }}">{{ $position->position }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="course">Course:</label>
+                                        <input type="text" name="course" class="form-control">
+                                        <button type="submit" class="btn btn-primary mt-2">Add course</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
 
-                        <hr>
-
-                        <h5>Course list</h5>
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>Position</th>
-                                    <th>Course</th>
-                                    {{-- <th>Actions</th> --}}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($positions as $position)
-                                    @foreach ($position->courses as $course)
+                            <div class="col-md-6">
+                                <h5>Course list</h5>
+                                <table class="table table-condensed">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $position->position }}</td>
-                                            <td>{{ $course->course }}</td>
-                                            {{-- <td>
-                                                <a href=""><i class="fa-solid fa-pen"></i></a>
-                                                |
-                                                <a href=""><i class="fa-solid fa-x"></i></a>
-                                            </td> --}}
+                                            <th>Position</th>
+                                            <th>Action</th>
+                                            <th>Course</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($positions as $position)
+                                            @foreach ($position->courses as $course)
+                                                <tr>
+                                                    <td>{{ $position->position }}</td>
+                                                    <td>
+                                                        <a href=""><i class="fa-solid fa-pen"></i></a>
+                                                        |
+                                                        <a href=""><i class="fa-solid fa-x"></i></a>
+                                                    </td>
+                                                    <td>{{ $course->course }}</td>
+                                                    <td>
+                                                        <a href=""><i class="fa-solid fa-pen"></i></a>
+                                                        |
+                                                        <a href=""><i class="fa-solid fa-x"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
         {{-- END ADD FORTE --}}
         
         {{-- ADD COURSE MODAL --}}
