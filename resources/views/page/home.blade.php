@@ -77,42 +77,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('page/images/sampleimage.png') }}" class="card-img-top fixed-image" alt="Course 1">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">Frontend</h5>
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">HTML5/CSS</h5>
-                            <h5 class="card-title">Mr. Emerson Pingol</h5>
-                            <p class="card-text">Enhance your frontend skills</p>
-                            <a href="#" class="btn btn-primary">Enroll now</a>
+                @foreach ($offered_course as $offered_courses)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card">
+                            <img src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course Image">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->position->position }}</h5>
+                                <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->course->course }}</h5>
+                                <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
+                                <p class="card-text">{{ $offered_courses->course_description }}</p>
+                                <a href="#" class="btn btn-primary" @if(auth()->check() && (auth()->user()->user_role == 'instructor' || auth()->user()->user_role == 'admin')) style="display: none" @endif>Enroll now</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('page/images/programming.jpg') }}" class="card-img-top fixed-image" alt="Course 2">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">Backend</h5>
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">PHP/MYSQL</h5>
-                            <h5 class="card-title">Mr. Charlie Devera</h5>
-                            <p class="card-text">Enhance your backend skills</p>
-                            <a href="#" class="btn btn-primary">Enroll now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('page/images/security.png') }}" class="card-img-top fixed-image" alt="Course 3">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">Cybersecurity</h5>
-                            <h5 class="card-title" style="color:#004225; font-weight: 900;">Penetration Testing</h5>
-                            <h5 class="card-title">Mr. Russel Vincent Cuevas</h5>
-                            <p class="card-text">Enhance your cybersecurity</p>
-                            <a href="#" class="btn btn-primary">Enroll now</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class="text-center">
                     <button onclick="window.location.href = '/courses'" class="btn btn-primary">View more</button>
                 </div>

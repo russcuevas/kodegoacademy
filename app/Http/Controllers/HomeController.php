@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offered;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,7 +11,8 @@ class HomeController extends Controller
 {
     public function Home()
     {
-        return view('page.home');
+        $offered_course = Offered::with(['position', 'course', 'user'])->get();
+        return view('page.home', compact('offered_course'));
     }
 
     public function About()
