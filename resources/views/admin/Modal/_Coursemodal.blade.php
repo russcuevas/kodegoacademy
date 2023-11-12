@@ -94,7 +94,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="addCourseForm" action="" method="POST" class="addCourseForm" enctype="multipart/form-data">
+                        <form id="addOfferedCourse" action="{{ route ('addofferedcourse')}}" method="POST" class="addOfferedCourse" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="profile_picture">Course picture:</label>
@@ -108,30 +108,42 @@
                         <div class="form-group">
                             <label for="position_id">Position:</label>
                             <select name="position_id" class="form-control" id="position_id">
-                                <option value="">Backend</option>
+                                @foreach ($positions as $position)
+                                    <option value="{{ $position->id }}">{{ $position->position }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group">
-                             <label for="offered_id">Course:</label>
-                             <select name="offered_id" id="offered_id" class="form-control">
-                                <option value="">PHP/MYSQL</option>
-                             </select>
+                            <label for="offered_id">Course:</label>
+                            <select name="course_id" id="offered_id" class="form-control">
+                                @foreach ($positions as $position)
+                                    @foreach ($position->courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->course }}</option>
+                                    @endforeach
+                                @endforeach
+                            </select>
                         </div>
+
+
 
                         <div class="form-group">
                             <label for="course_description">Course description:</label>
                             <textarea name="course_description" id="course_description" class="form-control" cols="30" rows="5" maxlength="150"></textarea>
                         </div>
 
+                        <hr>
+
                         <div class="form-group">
-                                <label for="course_instructor">Course instructor:</label>
-                                <select name="course_instructor" class="form-control" id="course_instructor">
-                                        <option value="">Charlie</option>
-                                        <option value="">Jeffrey</option>
-                                </select>
+                            <label for="course_instructor">Choose instructor:</label>
+                            <select name="user_id" class="form-control" id="course_instructor">
+                                @foreach ($instructors as $instructor)
+                                    <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
                         </form>
                     </div>
                 </div>

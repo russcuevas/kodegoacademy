@@ -35,6 +35,7 @@ Route::get('/get-pie-chart', [ChartController::class, 'getPieChartData']);
 // ADMIN PANEL MANAGE COURSE
 Route::post('/addposition', [AdminController::class, 'AddPosition'])->name('addposition');
 Route::post('/addcourse', [AdminController::class, 'AddCourse'])->name('addcourse');
+Route::post('/addofferedcourse', [AdminController::class, 'AddOffered'])->name('addofferedcourse');
 
 // ADMIN CHANGE PASSWORD
 Route::post('/admin/changepassword', [AdminController::class, 'ChangePassword'])->name('changepassword');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offered;
 use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -199,8 +200,12 @@ class AdminController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
+
+        $offereds = Offered::with(['position', 'course', 'user'])->get();
         $positions = Position::all();
-        return view('admin.course', compact('positions'));
+        $instructors = User::where('user_role', 'instructor')->get();
+
+        return view('admin.course', compact('offereds', 'positions', 'instructors'));
     }
 
     public function AddPosition(Request $request)
@@ -251,6 +256,49 @@ class AdminController extends Controller
         return response()->json([
             'message' => 'Add course successfully',
             'data' => $course,
+            'status' => 200,
+        ]);
+    }
+
+    public function AddOffered(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'course_picture' => 'required|image|mimes:jpg,jpeg,png',
+            'user_id' => 'required|exists:users,id,user_role,instructor',
+            'position_id' => 'required|exists:positions,id',
+            'course_id' => 'required|exists:courses,id',
+            'course_description' => 'required|max:255',
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400,
+            ]);
+        };
+
+        if ($request->hasFile('course_picture')) {
+            $image = $request->file('course_picture');
+            $imageName = 'course_' . Str::random(10) . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/course/images/course', $imageName);
+
+            $imageNameOnly = pathinfo($imagePath, PATHINFO_BASENAME);
+        } else {
+            $imageNameOnly = 'default_course.jpg';
+        }
+
+        Offered::create([
+            'user_id' => $request->user_id,
+            'position_id' => $request->position_id,
+            'course_id' => $request->course_id,
+            'course_picture' => $imageNameOnly,
+            'course_description' => $request->course_description,
+        ]);
+
+        return response()->json([
+            'message' => 'Offered course add successfully',
             'status' => 200,
         ]);
     }

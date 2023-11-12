@@ -13,33 +13,35 @@
         @include('admin.Modal._Coursemodal')
 
         <div class="table-responsive" style="overflow: scroll; height: 390px;">
-            <table id="myTable" class="display table-hover">
-                <thead>
+        <table id="myTable" class="display table-hover">
+            <thead>
+                <tr>
+                    <th>Course picture</th>
+                    <th>Offered Course</th>
+                    <th>Course description</th>
+                    <th>Instructor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($offereds as $offered)
                     <tr>
-                        <th>Course picture</th>
-                        <th>Position</th>
-                        <th>Course</th>
-                        <th>Course description</th>
-                        <th>Instructor</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="" alt="Sample"></td>
-                        <td>Backend</td>
-                        <td>PHP Mysql</td>
-                        <td>Enhance your backend skills</td>
-                        <td>Archie De Vera</td>
+                        <td><img style="width: 50px; height: 50px; border-radius: 50px" src="{{ asset('storage/course/images/course/' . $offered->course_picture) }}" alt="Course Image"></td>
+                        <td>
+                            <strong>Position:</strong> {{ $offered->position->position }}<br>
+                            <strong>Course:</strong> {{ $offered->course->course }}
+                        </td>
+                        <td>{{ $offered->course_description }}</td>
+                        <td>{{ $offered->user->name }}</td>
                         <td>
                             <i class="fa-solid fa-eye"></i>
                             <i class="fa-solid fa-pen-to-square"></i>
                             <i class="fa-solid fa-trash"></i>
                         </td>
                     </tr>
-                    
-                </tbody>
-            </table>
+                @endforeach
+            </tbody>
+        </table>
         </div>
     </div>
 </div>
