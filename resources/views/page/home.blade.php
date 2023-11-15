@@ -86,6 +86,7 @@
                                 <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->course->course }}</h5>
                                 <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
                                 <p class="card-text">{{ $offered_courses->course_description }}</p>
+                                <p> Scheduled at : {{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</p>
                                 <a href="#" class="btn btn-primary" @if(auth()->check() && (auth()->user()->user_role == 'instructor' || auth()->user()->user_role == 'admin')) style="display: none" @endif>Enroll now</a>
                             </div>
                         </div>
