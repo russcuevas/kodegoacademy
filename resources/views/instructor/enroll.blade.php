@@ -4,113 +4,41 @@
 
 <div class="container">
     <div class="main-content col-md-11">
-        <h1 class="mb-2">Page</h1>
+        <h1 class="mb-2">List of enrollee</h1>
         <div class="mb-3">
             <a href="{{ route('dashboardpage') }}" style="font-weight: 900; text-decoration: none;"><i class="fa-solid fa-house"></i> Dashboard</a> 
-            / <i class="fa-brands fa-chrome"></i><span> Page</span>
+            / <i class="fa-solid fa-code"></i><span> List of enrollee</span>
         </div>
 
         <div class="table-responsive" style="overflow: scroll; height: 390px;">
             <table id="myTable" class="display table-hover">
                 <thead>
                     <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                        <th>Column 4</th>
+                        <th>Enrollee No.</th>
+                        <th>Enrollee Name</th>
+                        <th>Enrollee Email</th>
+                        <th>Enrollee Contact</th>
+                        <th>Enrolled Course</th>
+                        <th>Scheduled at</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Row 1</td>
-                        <td>Row 3</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
+                        <td>1</td>
+                        <td>Archie</td>
+                        <td>archie@gmail.com</td>
+                        <td>099875748392</td>
+                        <td>HTML/CSS</td>
+                        <td>11/30/2023 - 4:30pm</td>
                         <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
+                            <select class="" name="" id="">
+                                <option value="">Pending</option>
+                                <option value="">Rejected</option>
+                                <option value="">Enrolled</option>
+                            </select>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 3</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 3</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 3</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>Row 1</td>
-                        <td>Row 2</td>
-                        <td>
-                            <i class="fa-solid fa-eye"></i>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
-                        </td>
-                    </tr>
-                    
                 </tbody>
             </table>
         </div>

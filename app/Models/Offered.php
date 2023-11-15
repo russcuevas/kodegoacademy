@@ -14,7 +14,8 @@ class Offered extends Model
         'position_id',
         'course_id',
         'course_picture',
-        'course_description'
+        'course_description',
+        'scheduled_at',
     ];
 
     public function user()

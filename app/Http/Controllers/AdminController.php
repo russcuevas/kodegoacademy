@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Offered;
 use App\Models\Position;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -268,8 +269,8 @@ class AdminController extends Controller
             'position_id' => 'required|exists:positions,id',
             'course_id' => 'required|exists:courses,id',
             'course_description' => 'required|max:255',
+            'scheduled_at' => 'required',
         ]);
-
 
         if ($validator->fails()) {
             return response()->json([
@@ -277,7 +278,7 @@ class AdminController extends Controller
                 'errors' => $validator->errors(),
                 'status' => 400,
             ]);
-        };
+        }
 
         if ($request->hasFile('course_picture')) {
             $image = $request->file('course_picture');
@@ -289,16 +290,19 @@ class AdminController extends Controller
             $imageNameOnly = 'default_course.jpg';
         }
 
+        $scheduledAt = Carbon::parse($request->scheduled_at)->format('Y-m-d H:i:s');
+
         Offered::create([
             'user_id' => $request->user_id,
             'position_id' => $request->position_id,
             'course_id' => $request->course_id,
             'course_picture' => $imageNameOnly,
             'course_description' => $request->course_description,
+            'scheduled_at' => $scheduledAt,
         ]);
 
         return response()->json([
-            'message' => 'Offered course add successfully',
+            'message' => 'Offered course added successfully',
             'status' => 200,
         ]);
     }

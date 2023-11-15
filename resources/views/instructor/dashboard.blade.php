@@ -7,21 +7,26 @@
             <div class="row">
                 <div class="col-md-3 boxes">
                     <i class="fa-solid fa-user"><span> Welcome Instructor</span></i>
-                    <h4 class="mt-3">Mr. Russel</h4>
-                    <a href="">View.</a>
+                    <h4 class="mt-3">{{ $instructor->name }}</h4>
+                    {{-- <a href="">View.</a> --}}
                 </div>
 
                 <div class="col-md-3 boxes">
                     <i class="fa-solid fa-person-chalkboard"><span> Total enrollees</span></i>
                     <h4 class="mt-3">15</h4>
-                    <a href="">View.</a>
+                    {{-- <a href="{{ route ('enrollpage') }}">View.</a> --}}
                 </div>
 
-                <!-- <div class="col-md-3 boxes">
-                    <i class="fa-solid fa-code"><span> Total course</span></i>
-                    <h4>15</h4>
-                    <a href="">View.</a>
-                </div> -->
+                <div class="col-md-3 boxes">
+                    <i class="fa-solid fa-code"><span> Assigned course</span></i>
+                    @if ($assignedCourse->isNotEmpty())
+                        <h4 class="mt-3">{{ $assignedCourse->first()->course->course }}</h4>
+                    @else
+                        <p>No assigned courses.</p>
+                    @endif
+
+                    {{-- <a href="">View.</a> --}}
+                </div>
             </div>
         </div>
     </div>

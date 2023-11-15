@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offered;
 use Illuminate\Support\Facades\Auth;
 
 class InstructorController extends Controller
@@ -15,9 +16,16 @@ class InstructorController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
+        // instructor auth
+        $instructor = Auth::user();
+        // getting the assigned course
+        $assignedCourse = Offered::where('user_id', $instructor->id)
+            ->with(['position', 'course', 'user'])
+            ->get();
 
-        return view('instructor.dashboard');
+        return view('instructor.dashboard', compact('instructor', 'assignedCourse'));
     }
+
 
     public function InstructorEnroll()
     {

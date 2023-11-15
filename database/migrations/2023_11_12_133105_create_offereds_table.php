@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->string('course_picture');
             $table->string('course_description');
+            $table->datetime('scheduled_at');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->where('user_role', 'instructor');

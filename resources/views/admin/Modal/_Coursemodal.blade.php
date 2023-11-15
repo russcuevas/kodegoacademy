@@ -143,6 +143,11 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <label for="scheduled_at">Scheduled at:</label>
+                            <input type="datetime-local" name="scheduled_at" id="scheduled_at" class="form-control">
+                        </div>
+
                         <button type="submit" class="btn btn-primary mt-2">Submit</button>
                         </form>
                     </div>
