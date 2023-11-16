@@ -32,4 +32,9 @@ class Offered extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'offered_id');
+    }
 }

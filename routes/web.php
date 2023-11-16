@@ -15,6 +15,9 @@ Route::get('/courses', [HomeController::class, 'Course'])->name('pagecourse');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
 Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
 
+// USER PANEL ENROLL
+Route::post('/enroll/{offered_course}', [HomeController::class, 'Enrollment'])->name('userenroll');
+
 // AUTH CONTROLLER
 Route::get('/login', [AuthController::class, 'Login'])->name('loginpage');
 Route::post('/loginrequest', [AuthController::class, 'LoginRequest'])->name('loginrequest');

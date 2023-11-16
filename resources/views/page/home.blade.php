@@ -88,7 +88,11 @@
                                 <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
                                 <p class="card-text">{{ $offered_courses->course_description }}</p>
                                 <p> Scheduled at : {{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</p>
-                                <a href="#" class="btn btn-primary" @if(auth()->check() && (auth()->user()->user_role == 'instructor' || auth()->user()->user_role == 'admin')) style="display: none" @endif>Enroll now</a>
+                                <form action="{{ route('userenroll', ['offered_course' => $offered_courses->id]) }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="offered_id" value="{{ $offered_courses->id }}">
+                                    <button type="submit" class="btn btn-primary">Enroll now</button>
+                                </form>                            
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrollment;
 use App\Models\Offered;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\Exception;
@@ -13,6 +14,36 @@ class HomeController extends Controller
     {
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
         return view('page.home', compact('offered_course'));
+    }
+
+    public function Enrollment(Request $request, Offered $offered_course)
+    {
+        if ($request->user()) {
+            if ($offered_course->available > 0) {
+                Enrollment::create([
+                    'user_id' => $request->user()->id,
+                    'offered_id' => $offered_course->id,
+                    'status' => 'Pending',
+                ]);
+
+                $offered_course->decrement('available');
+
+                return response()->json([
+                    'message' => 'Enroll successful',
+                    'status' => 200,
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'No available slots',
+                    'status' => 400,
+                ]);
+            }
+        } else {
+            return response()->json([
+                'message' => 'You must be logged in to enroll.',
+                'status' => 401,
+            ]);
+        }
     }
 
     public function About()
