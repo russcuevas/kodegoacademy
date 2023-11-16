@@ -19,6 +19,17 @@ class HomeController extends Controller
     public function Enrollment(Request $request, Offered $offered_course)
     {
         if ($request->user()) {
+            $existingEnrollment = Enrollment::where('user_id', $request->user()->id)
+                ->where('offered_id', $offered_course->id)
+                ->first();
+
+            if ($existingEnrollment) {
+                return response()->json([
+                    'message' => 'You are already enrolled in this course.',
+                    'status' => 400,
+                ]);
+            }
+
             if ($offered_course->available > 0) {
                 Enrollment::create([
                     'user_id' => $request->user()->id,
@@ -29,7 +40,7 @@ class HomeController extends Controller
                 $offered_course->decrement('available');
 
                 return response()->json([
-                    'message' => 'Enroll successful',
+                    'message' => 'Request submitted please wait the approval of the instructor',
                     'status' => 200,
                 ]);
             } else {
