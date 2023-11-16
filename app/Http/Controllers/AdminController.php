@@ -26,7 +26,8 @@ class AdminController extends Controller
         }
         $getTotalUsers = User::where('user_role', 'user')->count();
         $getTotalInstructors = User::where('user_role', 'instructor')->count();
-        return view('admin.dashboard', compact('getTotalUsers', 'getTotalInstructors'));
+        $getTotalOfferedCourse = Offered::count();
+        return view('admin.dashboard', compact('getTotalUsers', 'getTotalInstructors', 'getTotalOfferedCourse'));
     }
 
     public function ChangePassword(Request $request)

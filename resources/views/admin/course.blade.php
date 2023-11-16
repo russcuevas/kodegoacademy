@@ -35,7 +35,7 @@
                         </td>
                         <td>
                             @if($offered->available > 0)
-                                {{ $offered->enrollees_count }}/{{ $offered->available }}
+                            {{ $offered->enrollments->count() }}/{{ $offered->available }}
                             @else
                                 0/{{ $offered->available }}
                             @endif
