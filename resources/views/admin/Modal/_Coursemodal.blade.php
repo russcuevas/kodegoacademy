@@ -138,7 +138,9 @@
                             <label for="course_instructor">Choose instructor:</label>
                             <select name="user_id" class="form-control" id="course_instructor">
                                 @foreach ($instructors as $instructor)
-                                    <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
+                                    @if (!$offereds->pluck('user_id')->contains($instructor->id))
+                                        <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
