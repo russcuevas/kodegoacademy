@@ -34,6 +34,9 @@ Route::get('/course', [AdminController::class, 'Course'])->name('coursepage');
 Route::get('/instructors', [AdminController::class, 'InstructorPage'])->name('instructorspage');
 Route::get('/users', [AdminController::class, 'Users'])->name('userspage');
 Route::get('/get-pie-chart', [ChartController::class, 'getPieChartData']);
+Route::get('/get-bar-chart', [ChartController::class, 'getBarChartData']);
+
+
 
 // ADMIN PANEL MANAGE COURSE
 Route::post('/addposition', [AdminController::class, 'AddPosition'])->name('addposition');

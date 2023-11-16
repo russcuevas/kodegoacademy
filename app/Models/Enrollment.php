@@ -14,4 +14,9 @@ class Enrollment extends Model
         'offered_id',
         'status',
     ];
+
+    public function offered()
+    {
+        return $this->belongsTo(Offered::class, 'offered_id');
+    }
 }
