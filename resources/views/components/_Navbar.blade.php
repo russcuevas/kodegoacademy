@@ -37,6 +37,7 @@
                             @endif
                             @else
                             <a class="dropdown-item" style="font-weight: 600;" href="/login">Login</a>
+                            <a class="dropdown-item" style="font-weight: 600;" href="/registration">Register</a>
                             @endauth
                         </div>
                     </li>
