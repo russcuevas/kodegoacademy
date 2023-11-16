@@ -81,7 +81,7 @@
                 @foreach ($offered_course as $offered_courses)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card">
-                            <img src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course Image">
+                            <img style="object-fit: fill"  src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course Image">
                             <div class="card-body">
                                 <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->position->position }}</h5>
                                 <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->course->course }}</h5>

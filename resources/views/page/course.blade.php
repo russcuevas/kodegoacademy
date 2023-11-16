@@ -31,7 +31,7 @@
                     @if ($offered_course->count() > 0)
                     @foreach ($offered_course as $offered_courses)
                     <div class="card">
-                        <img src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course 1">
+                        <img style="object-fit: fill" src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course 1">
                         <div class="card-body">
                             <h5 class="card-title" style="color:#004225; font-weight: 900;">{{$offered_courses->position->position}}</h5>
                             <h5 class="card-title" style="color:#004225; font-weight: 900;">{{$offered_courses->course->course}}</h5>
