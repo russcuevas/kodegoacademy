@@ -18,6 +18,7 @@
                 <tr>
                     <th>Picture</th>
                     <th>Offered course</th>
+                    <th>Available</th>
                     <th>Course description</th>
                     <th>Session at</th>
                     <th>Instructor</th>
@@ -32,6 +33,13 @@
                             <strong>Position:</strong> {{ $offered->position->position }}<br>
                             <strong>Course:</strong> {{ $offered->course->course }}
                         </td>
+                        <td>
+                            @if($offered->available > 0)
+                                {{ $offered->enrollees_count }}/{{ $offered->available }}
+                            @else
+                                0/{{ $offered->available }}
+                            @endif
+                        </td>
                         <td>{{ $offered->course_description }}</td>
                         <td>{{ \Carbon\Carbon::parse($offered->scheduled_at)->format('F j, Y / h:i A') }}</td>
                         <td>{{ $offered->user->name }}</td>
@@ -43,7 +51,7 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>
+            </table>
         </div>
     </div>
 </div>

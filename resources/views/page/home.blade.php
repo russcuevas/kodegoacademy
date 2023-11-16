@@ -77,6 +77,7 @@
                 </div>
             </div>
             <div class="row">
+                @if($offered_course->count() > 0)
                 @foreach ($offered_course as $offered_courses)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card">
@@ -92,6 +93,11 @@
                         </div>
                     </div>
                 @endforeach
+                @else
+                    <div class="text-center mb-5">
+                        <h5 style="color: red;">No courses available right now</h5>
+                    </div>
+                @endif
                 <div class="text-center">
                     <button onclick="window.location.href = '/courses'" class="btn btn-primary">View more</button>
                 </div>

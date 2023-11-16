@@ -26,11 +26,11 @@
             </section>
 
             <div id="no-available-message" style="display: none; color: red; font-weight: 900; text-align: center;">No available courses for the selected option.</div>
-
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4" data-course="Frontend">
+                    @if ($offered_course->count() > 0)
+                    @foreach ($offered_course as $offered_courses)
                     <div class="card">
-                        @foreach ($offered_course as $offered_courses)
                         <img src="{{ asset('storage/course/images/course/' . $offered_courses->course_picture) }}" class="card-img-top fixed-image" alt="Course 1">
                         <div class="card-body">
                             <h5 class="card-title" style="color:#004225; font-weight: 900;">{{$offered_courses->position->position}}</h5>
@@ -40,8 +40,13 @@
                             <p> Scheduled at : {{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</p>
                             <a href="#" class="btn btn-primary" @if(auth()->check() && (auth()->user()->user_role == 'instructor' || auth()->user()->user_role == 'admin')) style="display: none" @endif>Enroll now</a>
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
+                    @else
+                    <div>
+                        <h5 style="color: red;">No courses available right now</h5>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

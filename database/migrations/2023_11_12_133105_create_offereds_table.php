@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->string('course_picture');
             $table->string('course_description');
+            $table->integer('available')->default(15);
             $table->datetime('scheduled_at');
             $table->timestamps();
 
