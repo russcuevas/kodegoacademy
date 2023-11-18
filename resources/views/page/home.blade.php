@@ -92,7 +92,7 @@
                                     <form class="enrollmentForm" id="enrollmentForm" action="{{ route('userenroll', ['offered_course' => $offered_courses->id]) }}" method="post">
                                         @csrf
                                         <input type="hidden" name="offered_id" value="{{ $offered_courses->id }}">
-                                        <button type="button" class="btn btn-primary" onclick="confirmEnrollment('{{ $offered_courses->course->course }}')">Enroll now</button>
+<button type="button" class="btn btn-primary enroll-btn" data-offered-id="{{ $offered_courses->id }}" data-course-name="{{ $offered_courses->course->course }}" onclick="confirmEnrollment(this)">Enroll now</button>
                                     </form>
                                 @endif
                             </div>

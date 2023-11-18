@@ -3,7 +3,10 @@ $(document).ready(function () {
     $('.enrollmentForm').submit(function (e) {
         e.preventDefault();
 
-        var url = '/enroll/' + $(this).find('[name="offered_id"]').val();
+        var offeredId = $(this).find('.enroll-btn').data('offered-id');
+        $(this).find('[name="offered_id"]').val(offeredId);
+
+        var url = '/enroll/' + offeredId;
 
         $.ajax({
             url: url,
@@ -45,7 +48,8 @@ $(document).ready(function () {
 });
 
 // FUNCTION IF CONFIRM OR NOT THE ENROLLMENT
-function confirmEnrollment(courseName) {
+function confirmEnrollment(button) {
+    var courseName = $(button).data('course-name');
     Swal.fire({
         title: 'Are you sure?',
         text: `You want to enroll in the course "${courseName}"?`,
@@ -57,7 +61,8 @@ function confirmEnrollment(courseName) {
         cancelButtonText: 'Cancel'
     }).then((result) => {
         if (result.isConfirmed) {
-            $('.enrollmentForm').submit();
+            $(button).closest('.enrollmentForm').submit();
         }
     });
 }
+
