@@ -100,7 +100,7 @@
                             <label for="profile_picture">Course picture:</label>
                             <input type="file" id="profile_picture" name="course_picture" accept=".jpg, .jpeg, .png" style="display: none;"><br>
                             <label for="profile_picture" id="profile_picture_label">
-                                <img src="" alt="Course picture" width="100" height="100" style="cursor: pointer">
+                                <img src="{{ asset('storage/course/images/default_course.jpg') }}" alt="Course picture" width="100" height="100" style="cursor: pointer">
                                 Click to choose a picture
                             </label>
                         </div>
