@@ -61,4 +61,4 @@ Route::get('/instructordb', [InstructorController::class, 'InstructorDashboard']
 Route::get('/enroll', [InstructorController::class, 'InstructorEnroll'])->name('enrollpage');
 
 // INSTRUCTOR CHANGE PASSWORD
-Route::post('/instructor/changepassword', [])->name('instructorchangepassword');
+Route::post('/instructor/changepassword', [InstructorController::class, 'ChangePassword'])->name('instructorchangepassword');

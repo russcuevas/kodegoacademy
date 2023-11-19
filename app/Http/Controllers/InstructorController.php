@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Enrollment;
 use App\Models\Offered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class InstructorController extends Controller
@@ -47,5 +50,30 @@ class InstructorController extends Controller
         } else {
             return redirect()->route('loginpage');
         }
+    }
+
+    public function ChangePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ]);
+        }
+
+        $user = Auth::user();
+
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return response()->json([
+            'message' => 'Password changed successfully',
+            'status' => 200
+        ]);
     }
 }

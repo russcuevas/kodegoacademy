@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="" id="changePasswordForm" class="changePasswordForm">
+                <form method="POST" action="{{ route('instructorchangepassword')}}" id="changePasswordForm" class="changePasswordForm">
                     @csrf
                     <div class="form-group">
                         <label for="newPassword">New Password</label>
