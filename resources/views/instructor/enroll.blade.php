@@ -2,6 +2,7 @@
 @include('instructor.Layout._Navbar')
 @include('instructor.Layout._Sidebar')
 
+
 <div class="container">
     <div class="main-content col-md-11">
         <h1 class="mb-2">List of enrollee</h1>
@@ -33,14 +34,14 @@
                         <td>{{ $enrollment->offered->course->course}}</td>
                         <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</td>
                         <td>
-                            <a href="#">View</a>
+                            <a href="#" data-toggle="modal" data-target="#enrollmentModal{{ $enrollment->enrollment_number }}">View</a>
                         </td>
                     </tr>
+                    @include('instructor.Modal._Enrollmentmodal')
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 @include('instructor.Layout._Footer')
