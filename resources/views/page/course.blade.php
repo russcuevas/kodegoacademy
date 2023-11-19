@@ -50,9 +50,9 @@
                     </div>
                 @endforeach
                 @else
-                    <div class="text-center mb-5">
+                    {{-- <div class="text-center mb-5">
                         <h5 style="color: red;">No courses available right now</h5>
-                    </div>
+                    </div> --}}
                 @endif
                 {{-- <div class="text-center">
                     <button onclick="window.location.href = '/courses'" class="btn btn-primary">View more</button>
