@@ -1,13 +1,13 @@
 // FILTER BY COURSE
 document.getElementById("course-select").addEventListener("change", function () {
     var selectedOption = this.value;
-    var courseCards = document.querySelectorAll(".mb-4[data-course]");
+    var courseCards = document.querySelectorAll(".mb-4[data-category]");
     var anyCardsDisplayed = false;
 
     courseCards.forEach(function (card) {
-        var cardCourse = card.getAttribute("data-course");
+        var cardCategory = card.getAttribute("data-category");
 
-        if (cardCourse === selectedOption || selectedOption === "") {
+        if (cardCategory === selectedOption || selectedOption === "") {
             card.style.display = "block";
             anyCardsDisplayed = true;
         } else {
