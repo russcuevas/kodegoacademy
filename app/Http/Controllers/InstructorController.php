@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Enrollment;
 use App\Models\Offered;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +39,8 @@ class InstructorController extends Controller
             return redirect()->route('loginpage');
         }
 
-        return view('instructor.enroll');
+        $enrollments = Enrollment::with(['user', 'offered'])->get();
+
+        return view('instructor.enroll', compact('enrollments'));
     }
 }

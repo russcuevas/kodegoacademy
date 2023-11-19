@@ -24,21 +24,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($enrollments as $enrollment)
                     <tr>
-                        <td>1</td>
-                        <td>Archie</td>
-                        <td>archie@gmail.com</td>
-                        <td>099875748392</td>
-                        <td>HTML/CSS</td>
-                        <td>11/30/2023 - 4:30pm</td>
+                        <td>{{ $enrollment->enrollment_number }}</td>
+                        <td>{{ $enrollment->user->name }}</td>
+                        <td>{{ $enrollment->user->email }}</td>
+                        <td>{{ $enrollment->user->contact }}</td>
+                        <td>{{ $enrollment->offered->course->course}}</td>
+                        <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</td>
                         <td>
-                            <select class="" name="" id="">
-                                <option value="">Pending</option>
-                                <option value="">Rejected</option>
-                                <option value="">Enrolled</option>
-                            </select>
+                            <a href="#">View</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

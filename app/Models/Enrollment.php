@@ -16,6 +16,11 @@ class Enrollment extends Model
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function offered()
     {
         return $this->belongsTo(Offered::class, 'offered_id');
