@@ -20,6 +20,19 @@
                     <li class="nav-item">
                         <a id="contact-link" class="nav-link" href="{{ route('contactpage') }}">Contact</a>
                     </li>
+
+                    <li class="notification-dropdown">
+                        <a id="notificationIcon" class="nav-link" href="#">
+                            <i class="fas fa-bell"></i>
+                            <span id="notificationCounter">2</span>
+                        </a>
+                        <div id="notificationPanel" class="notification-box">
+                            <p><a href="#">Enrolled successfully in React JS Course!!</a></p>
+                            <p><a href="#">Enrolled successfully in ASP.NET Course!!</a></p>
+                        </div>
+                    </li>
+
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user"></i>

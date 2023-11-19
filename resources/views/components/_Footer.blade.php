@@ -10,5 +10,17 @@
     <script src="{{ asset('page/js/page.js') }}"></script>
     <script src="{{ asset('page/js/course_page.js') }}"></script>
     <script src="{{ asset('page/vendor/tilt/tilt.jquery.min.js') }}"></script>
+    {{-- NOTIFICATION MESSAGE --}}
+    <script>
+        document.getElementById('notificationIcon').addEventListener('click', function () {
+            var notificationPanel = document.getElementById('notificationPanel');
+
+            if (notificationPanel.style.display === 'none' || notificationPanel.style.display === '') {
+                notificationPanel.style.display = 'block';
+            } else {
+                notificationPanel.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

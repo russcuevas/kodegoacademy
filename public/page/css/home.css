@@ -44,6 +44,67 @@ body {
     left: auto !important;
 }
 
+.notification-dropdown {
+    position: relative;
+}
+
+#notificationIcon {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+}
+
+#notificationIcon i {
+    font-size: 20px;
+}
+
+#notificationCounter {
+    background-color: #e44d26;
+    color: #fff;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.notification-box {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.notification-box p {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.notification-box p:last-child {
+    border-bottom: none;
+}
+
+.notification-box a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.notification-box a:hover {
+    background-color: #f5f5f5;
+}
+
 
 
 /* HEADER */
