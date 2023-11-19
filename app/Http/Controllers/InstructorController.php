@@ -25,7 +25,9 @@ class InstructorController extends Controller
             ->with(['position', 'course', 'user'])
             ->get();
 
-        return view('instructor.dashboard', compact('instructor', 'assignedCourse'));
+        $numberEnrollees = Enrollment::count();
+
+        return view('instructor.dashboard', compact('instructor', 'assignedCourse', 'numberEnrollees'));
     }
 
 

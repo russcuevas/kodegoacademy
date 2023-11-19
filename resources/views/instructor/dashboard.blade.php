@@ -13,7 +13,7 @@
 
                 <div class="col-md-3 boxes">
                     <i class="fa-solid fa-person-chalkboard"><span> Total enrollees</span></i>
-                    <h4 class="mt-3">15</h4>
+                    <h4 class="mt-3">{{ $numberEnrollees }}</h4>
                     {{-- <a href="{{ route ('enrollpage') }}">View.</a> --}}
                 </div>
 

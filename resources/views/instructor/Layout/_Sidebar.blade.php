@@ -7,7 +7,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Request::route()->getName() == 'enrollpage' ? 'active' : '' }}"  href="{{ route('enrollpage') }}">
-                <i class="fa-solid fa-code"></i><span style="font-weight: 900"> Enrolled</span>
+                <i class="fa-solid fa-code"></i><span style="font-weight: 900"> Enrollees</span>
             </a>
         </li>
         <li class="nav-item">
