@@ -1,3 +1,6 @@
+// ANIMATION ON SCROLL
+AOS.init();
+
 // ACTIVE LINK NAVBAR
 var currentPath = window.location.pathname;
 

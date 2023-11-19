@@ -18,7 +18,7 @@
     </header>
 
 
-    <section class="about" id="about">
+    <section data-aos="fade-up" data-aos-duration="2000" class="about" id="about">
         <div class="container">
             <div class="row">
             <h1 class="title text-center" style="color: #9fef00">About Us</h1>
@@ -69,7 +69,7 @@
     </section>
 
 
-    <section class="course vh-100" style="margin-top: 100px;" id="course">
+    <section data-aos="fade-up" data-aos-duration="2000" class="course vh-100" style="margin-top: 100px;" id="course">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-4">
@@ -111,7 +111,7 @@
         </div>
     </section>
 
-    <section class="contact vh-100" style="margin-top: 150px" id="contact">
+    <section data-aos="fade-up" data-aos-duration="2000" class="contact vh-100" style="margin-top: 150px" id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
