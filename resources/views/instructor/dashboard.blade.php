@@ -22,7 +22,7 @@
                     @if ($assignedCourse->isNotEmpty())
                         <h4 class="mt-3">{{ $assignedCourse->first()->course->course }}</h4>
                     @else
-                        <p>No assigned courses.</p>
+                        <h4 class="mt-3" style="color: red">No assigned</h4>
                     @endif
 
                     {{-- <a href="">View.</a> --}}

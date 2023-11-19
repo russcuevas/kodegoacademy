@@ -10,6 +10,7 @@ class Enrollment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'enrollment_number',
         'user_id',
         'offered_id',
         'status',

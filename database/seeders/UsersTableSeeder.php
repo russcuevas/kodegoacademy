@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $profileAdminUrl = 'https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-6/354426023_229231946626809_2605493308577140062_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG1BdqkKqauU4gQd95Em3cYjR5NOQhBOhGNHk05CEE6ETTb0r34fvA0co_x8h93vKzFcSk3uRtklkxR2XO_i9OB&_nc_ohc=twnu6RIWVsIAX8V1SFJ&_nc_ht=scontent.fmnl30-2.fna&oh=00_AfBhvrE3zmtwLKRh9y-tOZ7oB6r0OBOl1r95WJ3Uhd1stw&oe=65594C6F';
+        $profileAdminUrl = 'https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-6/354426023_229231946626809_2605493308577140062_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=j10pOX716eUAX9nC8ko&_nc_ht=scontent.fmnl30-2.fna&oh=00_AfDiDxEKgAYp_0uuwaoSOX-3q_ocIRufG6uEQV8CT1gj0g&oe=655F3B2F';
         $fileAdmin = 'profile_' . Str::random(10) . '.png';
         $imageAdmin = file_get_contents($profileAdminUrl);
         Storage::disk('public')->put('auth/images/profile_pictures/' . $fileAdmin, $imageAdmin);

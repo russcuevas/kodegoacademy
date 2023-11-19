@@ -31,7 +31,11 @@ class HomeController extends Controller
             }
 
             if ($offered_course->available > 0) {
+                $lastEnrollment = Enrollment::latest()->value('enrollment_number');
+                $lastNumber = intval(substr($lastEnrollment, 8)) + 1;
+                $newEnrollmentNumber = 'Enrollee' . str_pad($lastNumber, 2, '0', STR_PAD_LEFT);
                 Enrollment::create([
+                    'enrollment_number' => $newEnrollmentNumber,
                     'user_id' => $request->user()->id,
                     'offered_id' => $offered_course->id,
                     'status' => 'Pending',
