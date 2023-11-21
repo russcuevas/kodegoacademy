@@ -64,33 +64,34 @@
         </div>
     </nav>
 
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h3>Dashboard</h3>
-        </div>
-        <ul class="list-unstyled components mt-3">
-            <li>
-                <a href="{{ route('profilepage') }}">
-                    <i class="fas fa-user"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('homepage') }}">
-                    <i class="fas fa-home"></i> Home
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fas fa-book"></i> Enrolled
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fas fa-cogs"></i> Settings
-                </a>
-            </li>
-        </ul>
-    </aside>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Dashboard</h3>
+            </div>
+            <ul class="list-unstyled components mt-3">
+                <li class="{{ Route::currentRouteName() == 'profilepage' ? 'active' : '' }}">
+                    <a href="{{ route('profilepage') }}">
+                        <i class="fas fa-user"></i> Dashboard
+                    </a>
+                </li>
+                <li class="{{ Route::currentRouteName() == 'homepage' ? 'active' : '' }}">
+                    <a href="{{ route('homepage') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="{{ Route::currentRouteName() == '' ? 'active' : '' }}">
+                    <a href="">
+                        <i class="fas fa-book"></i> Enrolled
+                    </a>
+                </li>
+                <li class="{{ Route::currentRouteName() == '' ? 'active' : '' }}">
+                    <a href="">
+                        <i class="fas fa-cogs"></i> Settings
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
 
 
     {{-- PLUGINS --}}

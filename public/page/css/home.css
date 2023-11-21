@@ -350,6 +350,7 @@ header img {
 }
 
 .sidebar ul li a {
+    font-weight: 900;
     padding: 15px;
     display: block;
     color: #fff;
@@ -361,6 +362,12 @@ header img {
     display: block;
     color: #333;
     text-decoration: none;
+    background-color: #fff;
+}
+
+.sidebar ul li.active a {
+    padding: 15px;
+    color: #333;
     background-color: #fff;
 }
 
