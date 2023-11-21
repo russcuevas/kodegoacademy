@@ -71,7 +71,7 @@
         <ul class="list-unstyled components mt-3">
             <li>
                 <a href="{{ route('profilepage') }}">
-                    <i class="fas fa-user"></i> Profile
+                    <i class="fas fa-user"></i> Dashboard
                 </a>
             </li>
             <li>
