@@ -14,6 +14,84 @@
     <link rel="shortcut icon" href="{{ asset('page/images/favicon.png') }}" type="image/x-icon">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>KodeGo Academy</title>
+    <style>
+    .main-content {
+    margin-left: 180px;
+    margin-top: 0;
+    /* background-color: #fff; */
+    /* border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.33), 0 0 0.2em rgba(0, 0, 0, 0.2); */
+    padding: 50px;
+    color: #333;
+    }
+
+    .boxes {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        width: 30%;
+        margin-right: 20px;
+    }
+    @media (max-width: 991px) {
+        .main-content {
+        margin-left: 80px;
+        margin-top: 0;
+        padding: 50px;
+        color: #333;
+        }
+
+        .boxes {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 70px;
+            width: 70%;
+            margin-right: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 10px;
+            margin-top: 0;
+            padding: 50px;
+            color: #333;
+        }
+
+        .boxes {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 70px;
+            width: 100%;
+            margin-right: 20px;
+        }
+    
+    }
+
+    @media (max-width: 450px) {
+
+        .main-content {
+            font-size: 15px;
+            margin-left: 5px;
+            margin-top: 0px;
+            padding: 30px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px; */
+        }
+
+        .boxes {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+    }
+    </style>
 </head>
 <body class="animate__animated animate__fadeIn">
 
@@ -68,7 +146,7 @@
             <div class="sidebar-header">
                 <h3>Dashboard</h3>
             </div>
-            <ul class="list-unstyled components mt-3">
+            <ul class="list-unstyled components mt-2">
                 <li class="{{ Route::currentRouteName() == 'profilepage' ? 'active' : '' }}">
                     <a href="{{ route('profilepage') }}">
                         <i class="fas fa-user"></i> Dashboard
@@ -91,6 +169,32 @@
                 </li>
             </ul>
         </aside>
+
+        <div class="container">
+            <div class="main-content col-md-11">
+                <div class="row">
+                    @auth
+                    <div class="col-md-4 boxes">
+                        <i class="fa-solid fa-user"><span> My profile</span></i>
+                        <h4 class="mt-3" style="font-size: 13px !important; color: #333">{{ auth()->user()->name }}</h4>
+                        <a href="" style="color: #333">View.</a>
+                    </div>
+                    @endauth
+
+                    {{-- <div class="col-md-4 boxes">
+                        <i class="fa-solid fa-person-chalkboard"><span> Total instructor</span></i>
+                        <h4 class="mt-3"></h4>
+                        <a href="">View.</a>
+                    </div>
+
+                    <div class="col-md-4 boxes">
+                        <i class="fa-solid fa-code"><span> Total course</span></i>
+                        <h4 class="mt-3"></h4>
+                        <a href="">View.</a>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
 
 
 
