@@ -40,7 +40,7 @@
                         <div class="dropdown-menu custom-dropdown-menu" aria-labelledby="userDropdown">
                             @auth
                             @if (auth()->user()->user_role === 'user')
-                            <a class="dropdown-item" style="font-weight: 600;" href="#">
+                            <a class="dropdown-item" style="font-weight: 600;" href="{{ route('profilepage') }}">
                                 <img style="height: 20px; width: 20px;" src="{{ asset('storage/auth/images/profile_pictures/' . Auth::user()->profile_picture) }}" alt=""> Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" style="font-weight: 600;"><i style="margin-left: 3px;" class="fa-solid fa-right-from-bracket"></i> Logout</a>
                             @elseif (auth()->user()->user_role === 'admin')

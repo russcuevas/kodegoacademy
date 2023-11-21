@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enrollment;
 use App\Models\Offered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -70,6 +71,20 @@ class HomeController extends Controller
     {
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
         return view('page.course', compact('offered_course'));
+    }
+
+    public function Profile()
+    {
+        if (Auth::check()) {
+            if (Auth::user()->user_role !== 'user') {
+                return redirect()->route('homepage');
+            }
+        } else {
+            return redirect()->route('homepage');
+        }
+
+        $user = Auth::user();
+        return view('page.profile', compact('user'));
     }
 
     public function Contact()

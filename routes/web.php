@@ -12,6 +12,7 @@ Route::get('/', [HomeController::class, 'Home'])->name('homepage');
 Route::get('/home', [HomeController::class, 'Home'])->name('homepage');
 Route::get('/about', [HomeController::class, 'About'])->name('aboutpage');
 Route::get('/courses', [HomeController::class, 'Course'])->name('pagecourse');
+Route::get('/profile', [HomeController::class, 'Profile'])->name('profilepage');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
 Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
 
