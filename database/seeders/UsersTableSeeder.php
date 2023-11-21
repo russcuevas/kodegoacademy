@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $profileAdminUrl = 'https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-6/354426023_229231946626809_2605493308577140062_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=JYy8dFvredkAX8QSzmn&_nc_ht=scontent.fmnl30-2.fna&oh=00_AfBQyRbZPWGglY_H4KHIw716yOd5Dsl17dzsXQS50ZYmFA&oe=655F3B2F';
+        $profileAdminUrl = 'https://th.bing.com/th/id/OIP.8r4KQ83wmwJb7yI9_GjYIgHaHa?w=214&h=214&c=7&r=0&o=5&dpr=1.3&pid=1.7';
         $fileAdmin = 'profile_' . Str::random(10) . '.png';
         $imageAdmin = file_get_contents($profileAdminUrl);
         Storage::disk('public')->put('auth/images/profile_pictures/' . $fileAdmin, $imageAdmin);

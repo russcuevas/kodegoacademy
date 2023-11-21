@@ -271,6 +271,7 @@ class AdminController extends Controller
             'course_id' => 'required|exists:courses,id',
             'course_description' => 'required|max:255',
             'scheduled_at' => 'required',
+            'end_at' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -292,6 +293,7 @@ class AdminController extends Controller
         }
 
         $scheduledAt = Carbon::parse($request->scheduled_at)->format('Y-m-d H:i:s');
+        $endAt = Carbon::parse($request->end_at)->format('Y-m-d H:i:s');
 
         Offered::create([
             'user_id' => $request->user_id,
@@ -300,6 +302,7 @@ class AdminController extends Controller
             'course_picture' => $imageNameOnly,
             'course_description' => $request->course_description,
             'scheduled_at' => $scheduledAt,
+            'end_at' => $endAt
         ]);
 
         return response()->json([

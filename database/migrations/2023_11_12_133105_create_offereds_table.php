@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('course_description');
             $table->integer('available')->default(15);
             $table->datetime('scheduled_at');
+            $table->datetime('end_at');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->where('user_role', 'instructor');
