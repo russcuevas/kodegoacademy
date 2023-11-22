@@ -27,8 +27,8 @@
                             <span id="notificationCounter">2</span>
                         </a>
                         <div id="notificationPanel" class="notification-box">
-                            <p><a href="#">Enrolled successfully in React JS Course!!</a></p>
-                            <p><a href="#">Enrolled successfully in ASP.NET Course!!</a></p>
+                            <p><a href="#"><i class="fas fa-book" style="color: red;"></i> Enrolled successfully in React JS Course!!</a></p>
+                            <p><a href="#"><i class="fas fa-book" style="color: red;"></i> Enrolled successfully in ASP.NET Course!!</a></p>
                         </div>
                     </li>
 
