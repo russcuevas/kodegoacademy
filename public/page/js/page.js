@@ -42,3 +42,9 @@ const observer = new IntersectionObserver((entries, observer) => {
 animatedElements.forEach(element => {
     observer.observe(element);
 });
+
+$(document).ready(function () {
+    $('#myTable').DataTable({
+        responsive: true
+    });
+});

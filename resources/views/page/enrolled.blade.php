@@ -11,16 +11,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="shortcut icon" href="{{ asset('page/images/favicon.png') }}" type="image/x-icon">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>KodeGo Academy</title>
     <style>
+    .container {
+        display: flex !important;
+        justify-content: center !important;
+    }
+    #myTable th {
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    }
+
+    #myTable td {
+        border: 1px solid #ddd;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .main-content {
     margin-left: 180px;
-    margin-top: 0;
-    /* background-color: #fff; */
-    /* border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.33), 0 0 0.2em rgba(0, 0, 0, 0.2); */
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.33), 0 0 0.2em rgba(0, 0, 0, 0.2);
     padding: 50px;
     color: #333;
     }
@@ -171,27 +189,40 @@
         </aside>
 
         <div class="container">
-            <div class="main-content col-md-11">
-                <div class="row">
-                    @auth
-                    <div class="col-md-4 boxes">
-                        <i class="fa-solid fa-user"><span> My profile</span></i>
-                        <h4 class="mt-3" style="font-size: 13px !important; color: #333">{{ auth()->user()->name }}</h4>
-                        <a href="" style="color: #333">View.</a>
-                    </div>
-                    @endauth
+            <div class="main-content col-md-10">
+                <h1 class="mb-2">My enrolled course</h1>
+                <div class="mb-3">
+                    <a href="{{ route('profilepage') }}" style="font-weight: 900; text-decoration: none;"><i class="fa-solid fa-house"></i> Dashboard</a>
+                    / <i class="fas fa-book"></i><span> Enrolled course</span>
+                </div>
 
-                    {{-- <div class="col-md-4 boxes">
-                        <i class="fa-solid fa-person-chalkboard"><span> Total instructor</span></i>
-                        <h4 class="mt-3"></h4>
-                        <a href="">View.</a>
-                    </div>
 
-                    <div class="col-md-4 boxes">
-                        <i class="fa-solid fa-code"><span> Total course</span></i>
-                        <h4 class="mt-3"></h4>
-                        <a href="">View.</a>
-                    </div> --}}
+                <div class="table-responsive mt-3">
+                    <table id="myTable" class="display table-hover col-md-12">
+                        <thead>
+                            <tr>
+                                <th>Course picture</th>
+                                <th>Course description</th>
+                                <th>Instructor</th>
+                                <th>Scheduled at</th>
+                                <!-- <th>Password</th> -->
+                                <th>End at</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="" alt="Sample"></td>
+                                <td>lorem</td>
+                                <td>Sample</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>Pending</td>
+                                <td><button class="btn btn-danger">Cancel</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -201,7 +232,11 @@
     {{-- PLUGINS --}}
     <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     {{-- AJAX --}}
     <script src="{{ asset('page/ajax/contact.js') }}"></script>
