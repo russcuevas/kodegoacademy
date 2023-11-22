@@ -7,9 +7,18 @@
     <div class="main-content col-md-11">
         <h1 class="mb-2">List of enrollee</h1>
         <div class="mb-3">
-            <a href="{{ route('dashboardpage') }}" style="font-weight: 900; text-decoration: none;"><i class="fa-solid fa-house"></i> Dashboard</a> 
+            <a href="{{ route('dashboardpage') }}" style="font-weight: 900; text-decoration: none;">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a> 
             / <i class="fa-solid fa-code"></i><span> List of enrollee</span>
+
+<!-- Add this button inside your HTML structure -->
+<div class="export" style="text-align: end">
+    <a href="javascript:void(0);" id="printButton">Print data</a>
+</div>
+
         </div>
+
 
         <div class="table-responsive" style="overflow: scroll; height: 390px;">
             <table id="myTable" class="display table-hover">
@@ -47,3 +56,12 @@
     </div>
 </div>
 @include('instructor.Layout._Footer')
+<script>
+    $(document).ready(function () {
+        // Add a click event listener to the print button
+        $("#printButton").click(function () {
+            // Open the print-friendly page in a new window
+            window.open('{{ route('printpage') }}', '_blank');
+        });
+    });
+</script>

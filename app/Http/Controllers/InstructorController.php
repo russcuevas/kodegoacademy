@@ -74,6 +74,21 @@ class InstructorController extends Controller
         ]);
     }
 
+    public function PrintEnrollee()
+    {
+        if (Auth::check() && Auth::user()->user_role === 'instructor') {
+            $instructorId = Auth::id();
+            $enrollments = Enrollment::with(['user', 'offered'])
+                ->whereHas('offered.course', function ($query) use ($instructorId) {
+                    $query->where('user_id', $instructorId);
+                })
+                ->get();
+            return view('instructor.print', compact('enrollments'));
+        } else {
+            return redirect()->route('loginpage');
+        }
+    }
+
     public function ChangePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [

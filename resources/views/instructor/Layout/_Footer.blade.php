@@ -10,6 +10,8 @@
 <script src="{{ asset('instructor/ajax/_Changepwajax.js')}}"></script>
 <script src="{{ asset('instructor/ajax/_Changestatusajax.js')}}"></script>
 
+
+
 </body>
 
 </html>
