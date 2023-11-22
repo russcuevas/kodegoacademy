@@ -63,7 +63,7 @@ class InstructorController extends Controller
             $enrollment->save();
 
             return response()->json([
-                'message' => 'Status updated successfully',
+                'message' => 'Enrollee updated successfully',
                 'status' => 200,
             ]);
         }

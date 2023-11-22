@@ -101,6 +101,34 @@ class HomeController extends Controller
         }
     }
 
+    public function CancelledEnrollee(Request $request)
+    {
+        if ($request->ajax()) {
+            $enrollmentId = $request->input('enrollment_id');
+            $status = $request->input('status');
+
+            $enrollment = Enrollment::find($enrollmentId);
+
+            if ($enrollment) {
+                $enrollment->status = $status;
+                $enrollment->save();
+                $offered = $enrollment->offered;
+                $offered->increment('available');
+
+                return response()->json([
+                    'message' => 'Cancelled enrolled successfully',
+                    'status' => 200,
+                ]);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Not found',
+            'status' => 400,
+        ]);
+    }
+
+
 
     public function Contact()
     {

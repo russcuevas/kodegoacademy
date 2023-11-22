@@ -16,6 +16,7 @@ Route::get('/profile', [HomeController::class, 'Profile'])->name('profilepage');
 Route::get('/enrolled', [HomeController::class, 'Enrolled'])->name('enrolledpage');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
 Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
+Route::post('/cancelled-enrollee', [HomeController::class, 'CancelledEnrollee'])->name('cancelledenrollee');
 
 // USER PANEL ENROLL
 Route::post('/enroll/{offered_course}', [HomeController::class, 'Enrollment'])->name('userenroll');

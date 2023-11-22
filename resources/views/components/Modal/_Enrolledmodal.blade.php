@@ -23,7 +23,11 @@
                 <p><strong>Enrollment Status:</strong> <span style="color: orange; font-weight: 900;">{{ $enrollment->status }}</span></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
+                @if($enrollment->status === 'Cancelled')
+                    <button type="button" class="btn btn-danger" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Delete</button>
+                @else
+                    <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
+                @endif
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>

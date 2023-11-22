@@ -15,6 +15,7 @@ class Offered extends Model
         'course_id',
         'course_picture',
         'course_description',
+        'available',
         'scheduled_at',
         'end_at'
     ];
