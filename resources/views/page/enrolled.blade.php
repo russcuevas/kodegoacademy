@@ -201,8 +201,8 @@
                     <table id="myTable" class="display table-hover col-md-12">
                         <thead>
                             <tr>
-                                <th>Course picture</th>
-                                {{-- <th>Course description</th> --}}
+                                <th>Picture</th>
+                                <th>Offered course</th>
                                 <th>Instructor</th>
                                 <th>Scheduled at</th>
                                 <!-- <th>Password</th> -->
@@ -216,6 +216,10 @@
                             <tr>
                                 <td>
                                     <img style="width: 50px; height: 50px; object: fit; border-radius: 50px;" src="{{ asset('storage/course/images/course/' . $enrollment->offered->course_picture) }}" class="card-img-top fixed-image" alt="Course Image">
+                                </td>
+                                <td>
+                                    <strong>Position:</strong> {{ $enrollment->offered->position->position }}<br>
+                                    <strong>Course:</strong> {{ $enrollment->offered->course->course }}
                                 </td>
                                 {{-- <td>{{ $enrollment->offered->course_description }}</td> --}}
                                 <td>{{ $enrollment->offered->user->name }}</td>
