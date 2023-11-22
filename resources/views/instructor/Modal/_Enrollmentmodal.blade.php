@@ -15,7 +15,8 @@
                 <p><strong>Enrollee Email:</strong> {{ $enrollment->user->email }}</p>
                 <p><strong>Enrollee Contact:</strong> {{ $enrollment->user->contact }}</p>
                 <p><strong>Enrolled Course:</strong> {{ $enrollment->offered->course->course}}</p>
-                <p><strong>Scheduled at:</strong> {{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</p>
+                <p><strong>Scheduled at:</strong> <span style="color: red;">{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
+                <p><strong>End at:</strong> <span style="color: red;">{{ \Carbon\Carbon::parse($enrollment->offered->end_at)->format('F j, Y / h:i A')}}</span></p>
                 <p><strong>Enrollment Status:</strong> <span style="color: orange; font-weight: 900;">{{ $enrollment->status }}</span></p>
             </div>
             <div class="modal-footer">

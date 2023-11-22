@@ -223,8 +223,8 @@
                                 </td>
                                 {{-- <td>{{ $enrollment->offered->course_description }}</td> --}}
                                 <td>{{ $enrollment->offered->user->name }}</td>
-                                <td>{{ $enrollment->offered->scheduled_at }}</td>
-                                <td>{{ $enrollment->offered->end_at }}</td>
+                                <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($enrollment->offered->end_at)->format('F j, Y / h:i A') }}</td>
                                 <td>{{ $enrollment->status }}</td>
                                 <td><button class="btn btn-primary">View</button></td>
                             </tr>

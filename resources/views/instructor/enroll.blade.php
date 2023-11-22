@@ -36,7 +36,7 @@
                         <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</td>
                         <td>{{ \Carbon\Carbon::parse($enrollment->offered->end_at )->format('F j, Y / h:i A')}} </td> --}}
                         <td>
-                            <a href="#" data-toggle="modal" data-target="#enrollmentModal{{ $enrollment->enrollment_number }}">View</a>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#enrollmentModal{{ $enrollment->enrollment_number }}">View</a>
                         </td>
                     </tr>
                     @include('instructor.Modal._Enrollmentmodal')
