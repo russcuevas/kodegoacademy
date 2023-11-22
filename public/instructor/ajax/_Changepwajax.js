@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     $('.changePasswordForm').on('submit', function (e) {
         e.preventDefault();

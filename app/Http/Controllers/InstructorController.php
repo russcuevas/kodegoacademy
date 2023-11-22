@@ -52,6 +52,28 @@ class InstructorController extends Controller
         }
     }
 
+    public function ChangeEnrollStatus(Request $request)
+    {
+        if ($request->ajax()) {
+            $enrollmentId = $request->input('enrollment_id');
+            $status = $request->input('status');
+
+            $enrollment = Enrollment::find($enrollmentId);
+            $enrollment->status = $status;
+            $enrollment->save();
+
+            return response()->json([
+                'message' => 'Status updated successfully',
+                'status' => 200,
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Not found',
+            'status' => 400,
+        ]);
+    }
+
     public function ChangePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [

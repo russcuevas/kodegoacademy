@@ -8,7 +8,7 @@
 <script src="{{ asset('instructor/js/datatable.js') }}"></script>
 {{-- AJAX --}}
 <script src="{{ asset('instructor/ajax/_Changepwajax.js')}}"></script>
-
+<script src="{{ asset('instructor/ajax/_Changestatusajax.js')}}"></script>
 
 </body>
 
