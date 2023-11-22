@@ -18,10 +18,10 @@
                         <th>Enrollee No.</th>
                         <th>Enrollee Name</th>
                         <th>Enrollee Email</th>
-                        <th>Enrollee Contact</th>
+                        {{-- <th>Enrollee Contact</th>
                         <th>Enrolled Course</th>
                         <th>Scheduled at</th>
-                        <th>End at</th>
+                        <th>End at</th> --}}
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -31,10 +31,10 @@
                         <td>{{ $enrollment->enrollment_number }}</td>
                         <td>{{ $enrollment->user->name }}</td>
                         <td>{{ $enrollment->user->email }}</td>
-                        <td>{{ $enrollment->user->contact }}</td>
+                        {{-- <td>{{ $enrollment->user->contact }}</td>
                         <td>{{ $enrollment->offered->course->course}}</td>
                         <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</td>
-                        <td>{{ \Carbon\Carbon::parse($enrollment->offered->end_at )->format('F j, Y / h:i A')}} </td>
+                        <td>{{ \Carbon\Carbon::parse($enrollment->offered->end_at )->format('F j, Y / h:i A')}} </td> --}}
                         <td>
                             <a href="#" data-toggle="modal" data-target="#enrollmentModal{{ $enrollment->enrollment_number }}">View</a>
                         </td>

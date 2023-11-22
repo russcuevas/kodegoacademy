@@ -202,7 +202,7 @@
                         <thead>
                             <tr>
                                 <th>Course picture</th>
-                                <th>Course description</th>
+                                {{-- <th>Course description</th> --}}
                                 <th>Instructor</th>
                                 <th>Scheduled at</th>
                                 <!-- <th>Password</th> -->
@@ -212,15 +212,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($enrollments as $enrollment)
                             <tr>
-                                <td><img src="" alt="Sample"></td>
-                                <td>lorem</td>
-                                <td>Sample</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Pending</td>
-                                <td><button class="btn btn-danger">Cancel</button></td>
+                                <td>
+                                    <img style="width: 50px; height: 50px; object: fit; border-radius: 50px;" src="{{ asset('storage/course/images/course/' . $enrollment->offered->course_picture) }}" class="card-img-top fixed-image" alt="Course Image">
+                                </td>
+                                {{-- <td>{{ $enrollment->offered->course_description }}</td> --}}
+                                <td>{{ $enrollment->offered->user->name }}</td>
+                                <td>{{ $enrollment->offered->scheduled_at }}</td>
+                                <td>{{ $enrollment->offered->end_at }}</td>
+                                <td>{{ $enrollment->status }}</td>
+                                <td><button class="btn btn-primary">View</button></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
