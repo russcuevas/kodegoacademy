@@ -87,21 +87,20 @@ class HomeController extends Controller
         return view('page.profile', compact('user'));
     }
 
-    public function enrolled()
+    public function Enrolled()
     {
-        if (Auth::check()) {
-            if (Auth::user()->user_role !== 'user') {
-                return redirect()->route('homepage');
-            }
-
+        if (Auth::check() && Auth::user()->user_role === 'user') {
             $user = Auth::user();
-            $enrollments = $user->enrollments()->with(['offered.course'])->get();
+            $enrollments = Enrollment::with(['offered.course'])
+                ->where('user_id', $user->id)
+                ->get();
 
             return view('page.enrolled', compact('user', 'enrollments'));
         } else {
             return redirect()->route('homepage');
         }
     }
+
 
     public function Contact()
     {
