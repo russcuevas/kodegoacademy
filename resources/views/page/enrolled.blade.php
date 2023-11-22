@@ -226,8 +226,11 @@
                                 <td>{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($enrollment->offered->end_at)->format('F j, Y / h:i A') }}</td>
                                 <td>{{ $enrollment->status }}</td>
-                                <td><button class="btn btn-primary">View</button></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#enrollmentModal{{ $enrollment->id }}">View</a>
+                                </td>
                             </tr>
+                                @include('components.Modal._Enrolledmodal', ['enrollment' => $enrollment])
                             @endforeach
                         </tbody>
                     </table>
