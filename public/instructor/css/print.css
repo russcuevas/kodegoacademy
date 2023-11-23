@@ -1,12 +1,3 @@
-/* print.css */
-
-/* Hide unnecessary elements for printing */
-.export {
-    display: none;
-}
-
-/* Additional styles for better print layout */
-/* You may customize these styles based on your needs */
 body {
     font-family: Arial, sans-serif;
 }
@@ -28,4 +19,10 @@ th {
     background-color: #f2f2f2;
 }
 
-/* Add any other print-specific styles as needed */
+#hideButton {
+    display: none;
+}
+
+#hideGoback {
+    display: none;
+}

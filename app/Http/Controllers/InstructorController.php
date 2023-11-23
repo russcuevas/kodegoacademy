@@ -82,12 +82,14 @@ class InstructorController extends Controller
                 ->whereHas('offered.course', function ($query) use ($instructorId) {
                     $query->where('user_id', $instructorId);
                 })
+                ->where('status', '=', 'Enrolled')
                 ->get();
             return view('instructor.print', compact('enrollments'));
         } else {
             return redirect()->route('loginpage');
         }
     }
+
 
     public function ChangePassword(Request $request)
     {
