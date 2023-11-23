@@ -12,10 +12,9 @@
             </a> 
             / <i class="fa-solid fa-code"></i><span> List of enrollee</span>
 
-<!-- Add this button inside your HTML structure -->
-<div class="export" style="text-align: end">
-    <a href="javascript:void(0);" id="printButton">Print data</a>
-</div>
+            <div class="export" style="text-align: end">
+                <a href="{{ route('printpage') }}" target="_blank" id="printButton" style="text-decoration: none" class="btn btn-success"> <i class="fa-solid fa-print"></i> Print</a>
+            </div>
 
         </div>
 
@@ -56,12 +55,3 @@
     </div>
 </div>
 @include('instructor.Layout._Footer')
-<script>
-    $(document).ready(function () {
-        // Add a click event listener to the print button
-        $("#printButton").click(function () {
-            // Open the print-friendly page in a new window
-            window.open('{{ route('printpage') }}', '_blank');
-        });
-    });
-</script>

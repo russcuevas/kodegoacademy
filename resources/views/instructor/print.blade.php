@@ -37,7 +37,7 @@
                     @php
                         $list = 1;
                     @endphp
-                    @foreach ($enrollments as $enrollment)
+                    @forelse ($enrollments as $enrollment)
                         <tr>
                             <td>
                                 <img style="height: 50px; width: 50px;" src="{{ asset('storage/auth/images/profile_pictures/' . $enrollment->user->profile_picture) }}" style="height: 100px; width: 100px;" alt="Profile Picture">
@@ -46,13 +46,19 @@
                             <td>{{ $enrollment->user->email }}</td>
                             <td>{{ $enrollment->user->contact }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" style="text-align: center;">No enrolled list</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
         <div style="text-align: center; margin-top: 20px;">
-            <button class="btn btn-primary" id="hideButton" onclick="window.print()">Print enrollee</button>
+            @if(count($enrollments) > 0)
+                <button class="btn btn-primary" id="hideButton" onclick="window.print()">Print enrollee</button>
+            @endif
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

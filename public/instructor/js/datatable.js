@@ -4,6 +4,7 @@ $(document).ready(function () {
     });
 });
 
+
 const menuToggle = document.getElementById("menu-toggle");
 const sidebar = document.getElementById("sidebar");
 
@@ -28,7 +29,6 @@ function toggleDropdown() {
     }
 }
 
-// Close the dropdown if the user clicks outside of it
 window.onclick = function (event) {
     if (!event.target.matches('#user-image')) {
         var dropdownContent = document.getElementById("dropdown-content");
