@@ -59,12 +59,23 @@ class InstructorController extends Controller
             $status = $request->input('status');
 
             $enrollment = Enrollment::find($enrollmentId);
+
+            if (!$enrollment) {
+                return response()->json([
+                    'message' => 'Enrollment not found',
+                    'status' => 400,
+                ]);
+            }
+
+            if ($status === 'Cancelled') {
+                $offered = $enrollment->offered;
+                $offered->increment('available');
+            }
+
             $enrollment->status = $status;
             $enrollment->save();
 
-            if ($enrollment) {
-                $enrollment->notifications()->update(['is_Seen' => 0]);
-            }
+            $enrollment->notifications()->update(['is_Seen' => 0]);
 
             return response()->json([
                 'message' => 'Enrollee updated successfully',
@@ -79,10 +90,10 @@ class InstructorController extends Controller
     }
 
 
+
     public function DeleteEnrollee($id)
     {
         $enrollment = Enrollment::find($id);
-
         if (!$enrollment) {
             return response()->json([
                 'error' => 'Enrollment not found',
@@ -90,14 +101,15 @@ class InstructorController extends Controller
             ]);
         }
 
-
+        $enrollment->notifications()->delete();
         $enrollment->delete();
 
         return response()->json([
-            'message' => 'Enrollment deleted successfully',
+            'message' => 'Enrollment and associated notifications deleted successfully',
             'status' => 200,
         ]);
     }
+
 
     public function PrintEnrollee()
     {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('is_Seen')->default(0);
             $table->timestamps();
 
-            $table->foreign('enrollment_id')->references('id')->on('enrollments');
+            $table->foreign('enrollment_id')->references('id')->on('enrollments')->onDelete('cascade');
         });
     }
 

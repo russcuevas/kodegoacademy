@@ -166,10 +166,17 @@ class HomeController extends Controller
             $enrollment = Enrollment::find($enrollmentId);
 
             if ($enrollment) {
+                $notifications = $enrollment->notifications;
                 $enrollment->status = $status;
                 $enrollment->save();
                 $offered = $enrollment->offered;
                 $offered->increment('available');
+
+                foreach ($notifications as $notification) {
+                    $notification->update([
+                        'is_Seen' => 0,
+                    ]);
+                }
 
                 return response()->json([
                     'message' => 'Cancelled enrolled successfully',
