@@ -27,8 +27,19 @@
                             <span id="notificationCounter">2</span>
                         </a>
                         <div id="notificationPanel" class="notification-box">
-                            <p><a href="#"><i class="fas fa-book" style="color: red;"></i> Enrolled successfully in React JS Course!!</a></p>
-                            <p><a href="#"><i class="fas fa-book" style="color: red;"></i> Enrolled successfully in ASP.NET Course!!</a></p>
+                        @foreach ($notifications as $notification)
+                            @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
+                                <p><a href="{{ route('enrolledpage') }}"><i class="fa-solid fa-hourglass-half" style="color: red;"></i>
+                                    </i> Please wait for the approval by the admin for <span style="color: red;"> {{ $notification->enrollment->offered->course->course }} </span> 
+                                    course thankyou for enrolling!!</a>
+                                </p>
+                            @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
+                                <p><a href="#"><i class="fa-solid fa-check" style="color: green;"></i>
+                                    </i> You are now successfully enrolled in <span style="color: red;"> {{ $notification->enrollment->offered->course->course }} 
+                                    </span> course!</a>
+                                </p>
+                            @endif
+                        @endforeach
                         </div>
                     </li>
 

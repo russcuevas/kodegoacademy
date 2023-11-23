@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use App\Models\Notification;
 use App\Models\Offered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,22 @@ class HomeController extends Controller
 {
     public function Home()
     {
-        $offered_course = Offered::with(['position', 'course', 'user'])->get();
-        return view('page.home', compact('offered_course'));
+        if (Auth::check() && Auth::user()->user_role === 'user') {
+            $offered_course = Offered::with(['position', 'course', 'user'])->get();
+            $enrollment = Enrollment::where('user_id', Auth::user()->id)->first();
+            $notifications = $enrollment ? $this->getNotificationsForEnrollment($enrollment->id) : [];
+            return view('page.home', compact('offered_course', 'notifications'));
+        }
+
+        return redirect()->route('homepage');
     }
+
+    private function getNotificationsForEnrollment($enrollmentId)
+    {
+        return Notification::where('enrollment_id', $enrollmentId)->get();
+    }
+
+
 
     public function Enrollment(Request $request, Offered $offered_course)
     {
@@ -35,11 +49,19 @@ class HomeController extends Controller
                 $lastEnrollment = Enrollment::latest()->value('enrollment_number');
                 $lastNumber = intval(substr($lastEnrollment, 8)) + 1;
                 $newEnrollmentNumber = 'Enrollee' . str_pad($lastNumber, 2, '0', STR_PAD_LEFT);
-                Enrollment::create([
+
+                // Create the enrollment
+                $enrollment = Enrollment::create([
                     'enrollment_number' => $newEnrollmentNumber,
                     'user_id' => $request->user()->id,
                     'offered_id' => $offered_course->id,
                     'status' => 'Pending',
+                ]);
+
+                // Create a notification for the user
+                Notification::create([
+                    'enrollment_id' => $enrollment->id,
+                    'is_Seen' => 0,
                 ]);
 
                 $offered_course->decrement('available');
@@ -61,6 +83,7 @@ class HomeController extends Controller
             ]);
         }
     }
+
 
     public function About()
     {
