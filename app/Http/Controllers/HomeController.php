@@ -192,6 +192,27 @@ class HomeController extends Controller
     }
     // END CANCEL ENROLLED
 
+    // DELETE ENROLLEE
+    public function UsersDeleteEnrollee($id)
+    {
+        $enrollment = Enrollment::find($id);
+        if (!$enrollment) {
+            return response()->json([
+                'error' => 'Enrollment not found',
+                'status' => 400,
+            ]);
+        }
+
+        $enrollment->notifications()->delete();
+        $enrollment->delete();
+
+        return response()->json([
+            'message' => 'Enrollment deleted successfully',
+            'status' => 200,
+        ]);
+    }
+    // END DELETE ENROLLEE
+
 
     public function Contact()
     {

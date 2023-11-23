@@ -7,6 +7,7 @@
 <script src="{{ asset('page/sweetalert2/dist/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('instructor/js/datatable.js') }}"></script>
 {{-- AJAX --}}
+<script src="{{ asset('instructor/ajax/_Deleteenrolleeajax.js')}}"></script>
 <script src="{{ asset('instructor/ajax/_Changepwajax.js')}}"></script>
 <script src="{{ asset('instructor/ajax/_Changestatusajax.js')}}"></script>
 

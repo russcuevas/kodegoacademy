@@ -17,7 +17,12 @@ Route::get('/profile', [HomeController::class, 'Profile'])->name('profilepage');
 Route::get('/enrolled', [HomeController::class, 'Enrolled'])->name('enrolledpage');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
 Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
+
+
 Route::post('/cancelled-enrollee', [HomeController::class, 'CancelledEnrollee'])->name('cancelledenrollee');
+Route::delete('/delete-enrollee/{id}', [HomeController::class, 'UsersDeleteEnrollee'])->name('enrolleedelete');
+
+
 // NOTIFICATIONS USER PANEL
 Route::post('/notification-mark-seen', [NotificationController::class, 'NotificationSeen'])->name('notification-seen');
 

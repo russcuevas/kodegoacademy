@@ -66,3 +66,75 @@ function confirmEnrollment(button) {
     });
 }
 
+// DELETE ENROLLMENT
+// $(document).ready(function () {
+//     $('.delete-enrollment').on('click', function (e) {
+//         e.preventDefault();
+
+//         var enrollmentId = $(this).data('enrollment-id');
+
+//         if (confirm('Are you sure you want to delete this enrollment?')) {
+//             $.ajax({
+//                 type: 'DELETE',
+//                 url: '/delete-enrollee/' + enrollmentId,
+//                 headers: {
+//                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                 },
+//                 success: function (response) {
+//                     console.log('Enrollment deleted successfully');
+//                 },
+//                 error: function (error) {
+//                     console.error('Error deleting enrollment:', error);
+//                 }
+//             });
+//         }
+//     });
+// });
+
+$(document).ready(function () {
+    $('.delete-enrollment').on('click', function (e) {
+        e.preventDefault();
+
+        var enrollmentId = $(this).data('enrollment-id');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/delete-enrollee/' + enrollmentId,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message
+                        })
+                        setTimeout(function () {
+                            location.reload();
+                        }, 3000);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: error.responseJSON.message
+                        });
+                    }
+                });
+            }
+        });
+    });
+});
+

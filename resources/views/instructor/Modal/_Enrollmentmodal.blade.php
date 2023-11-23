@@ -21,14 +21,14 @@
             </div>
             <div class="modal-footer">
                 @if($enrollment->status === 'Cancelled')
-                    <a href="#" class="delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
+                    <a href="#" class="btn btn-danger delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @elseif($enrollment->status === 'Pending')
                     <button type="button" class="btn btn-success change-status" data-status="Enrolled" data-enrollment-id="{{ $enrollment->id }}">Enrolled</button>
                     <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @else
-                    <a href="#" class="delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
+                    <a href="#" class="btn btn-danger delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @endif
             </div>

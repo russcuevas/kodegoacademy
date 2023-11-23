@@ -24,7 +24,7 @@
             </div>
             <div class="modal-footer">
                 @if($enrollment->status === 'Cancelled')
-                    <button type="button" class="btn btn-danger" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Delete</button>
+                    <a href="#" class="btn btn-danger delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
                 @else
                     <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
                 @endif
