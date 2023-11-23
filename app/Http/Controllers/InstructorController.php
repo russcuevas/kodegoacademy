@@ -62,6 +62,10 @@ class InstructorController extends Controller
             $enrollment->status = $status;
             $enrollment->save();
 
+            if ($enrollment) {
+                $enrollment->notifications()->update(['is_Seen' => 0]);
+            }
+
             return response()->json([
                 'message' => 'Enrollee updated successfully',
                 'status' => 200,
@@ -73,6 +77,7 @@ class InstructorController extends Controller
             'status' => 400,
         ]);
     }
+
 
     public function DeleteEnrollee($id)
     {

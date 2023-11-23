@@ -25,4 +25,9 @@ class Enrollment extends Model
     {
         return $this->belongsTo(Offered::class, 'offered_id');
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }
