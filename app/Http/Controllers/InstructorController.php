@@ -79,13 +79,19 @@ class InstructorController extends Controller
         $enrollment = Enrollment::find($id);
 
         if (!$enrollment) {
-            return response()->json(['error' => 'Enrollment not found'], 404);
+            return response()->json([
+                'error' => 'Enrollment not found',
+                'status' => 400,
+            ]);
         }
 
 
         $enrollment->delete();
 
-        return response()->json(['message' => 'Enrollment deleted successfully']);
+        return response()->json([
+            'message' => 'Enrollment deleted successfully',
+            'status' => 200,
+        ]);
     }
 
     public function PrintEnrollee()
