@@ -74,6 +74,20 @@ class InstructorController extends Controller
         ]);
     }
 
+    public function DeleteEnrollee($id)
+    {
+        $enrollment = Enrollment::find($id);
+
+        if (!$enrollment) {
+            return response()->json(['error' => 'Enrollment not found'], 404);
+        }
+
+
+        $enrollment->delete();
+
+        return response()->json(['message' => 'Enrollment deleted successfully']);
+    }
+
     public function PrintEnrollee()
     {
         if (Auth::check() && Auth::user()->user_role === 'instructor') {

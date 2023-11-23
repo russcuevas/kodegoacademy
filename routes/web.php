@@ -64,3 +64,4 @@ Route::get('/enroll', [InstructorController::class, 'InstructorEnroll'])->name('
 Route::post('/instructor/changepassword', [InstructorController::class, 'ChangePassword'])->name('instructorchangepassword');
 Route::post('/enrollment-status', [InstructorController::class, 'ChangeEnrollStatus'])->name('enrollmentstatus');
 Route::get('/print-enrollee', [InstructorController::class, 'PrintEnrollee'])->name('printpage');
+Route::delete('/enrollments/{id}', [InstructorController::class, 'DeleteEnrollee'])->name('enrollmentdelete');

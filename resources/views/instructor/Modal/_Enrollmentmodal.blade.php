@@ -21,15 +21,15 @@
             </div>
             <div class="modal-footer">
                 @if($enrollment->status === 'Cancelled')
-                <button type="button" class="btn btn-danger change-status" data-status="Delete" data-enrollment-id="{{ $enrollment->id }}">Delete</button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <a href="#" class="delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @elseif($enrollment->status === 'Pending')
-                <button type="button" class="btn btn-success change-status" data-status="Enrolled" data-enrollment-id="{{ $enrollment->id }}">Enrolled</button>
-                <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success change-status" data-status="Enrolled" data-enrollment-id="{{ $enrollment->id }}">Enrolled</button>
+                    <button type="button" class="btn btn-danger change-status" data-status="Cancelled" data-enrollment-id="{{ $enrollment->id }}">Cancelled</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @else
-                <button type="button" class="btn btn-danger change-status" data-status="Delete" data-enrollment-id="{{ $enrollment->id }}">Delete</button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <a href="#" class="delete-enrollment" data-enrollment-id="{{ $enrollment->id }}">Delete</a>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
                 @endif
             </div>
         </div>

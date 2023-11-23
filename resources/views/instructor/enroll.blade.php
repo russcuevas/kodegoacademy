@@ -55,3 +55,33 @@
     </div>
 </div>
 @include('instructor.Layout._Footer')
+<script>
+    $(document).ready(function() {
+        $('.delete-enrollment').on('click', function(e) {
+            e.preventDefault();
+
+            // Get the enrollment ID from the data-enrollment-id attribute
+            var enrollmentId = $(this).data('enrollment-id');
+
+            // Confirm deletion
+            if (confirm('Are you sure you want to delete this enrollment?')) {
+                // Make an AJAX request to delete the enrollment
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/enrollments/' + enrollmentId, // Replace with your actual route
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        // Handle success, e.g., remove the corresponding row from the table
+                        console.log('Enrollment deleted successfully');
+                        // You might want to reload the page or update the UI accordingly
+                    },
+                    error: function(error) {
+                        console.error('Error deleting enrollment:', error);
+                    }
+                });
+            }
+        });
+    });
+</script>
