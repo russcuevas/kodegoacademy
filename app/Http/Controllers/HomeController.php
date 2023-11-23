@@ -14,14 +14,11 @@ class HomeController extends Controller
 {
     public function Home()
     {
-        if (Auth::check() && Auth::user()->user_role === 'user') {
-            $offered_course = Offered::with(['position', 'course', 'user'])->get();
-            $enrollment = Enrollment::where('user_id', Auth::user()->id)->first();
-            $notifications = $enrollment ? $this->getNotificationsForEnrollment($enrollment->id) : [];
-            return view('page.home', compact('offered_course', 'notifications'));
-        }
+        $offered_course = Offered::with(['position', 'course', 'user'])->get();
+        $enrollment = Auth::check() ? Enrollment::where('user_id', Auth::user()->id)->first() : null;
+        $notifications = $enrollment ? $this->getNotificationsForEnrollment($enrollment->id) : [];
 
-        return redirect()->route('homepage');
+        return view('page.home', compact('offered_course', 'notifications'));
     }
 
     private function getNotificationsForEnrollment($enrollmentId)
