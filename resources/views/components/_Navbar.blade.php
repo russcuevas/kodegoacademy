@@ -24,17 +24,17 @@
                     {{-- DISPLAYING NOTIFICATION --}}
                     @if (!Auth::check() || (Auth::user()->user_role === 'user'))
                         <li class="notification-dropdown">
-                            <a id="notificationIcon" class="nav-link" href="#">
+                            <span style="cursor: pointer" id="notificationIcon" class="nav-link" href="">
                                 <i class="fas fa-bell"></i>
                                 <span id="notificationCounter">{{ $unreadNotifications }}</span>
-                            </a>
+                            </span>
                     <div id="notificationPanel" class="notification-box">
                         @if (Auth::check())
                             @foreach ($enrollments as $enrollment)
-                                @foreach (app('App\Http\Controllers\HomeController')->getNotifications($enrollment->id) as $notification)
+                                @foreach (app('App\Http\Controllers\NotificationController')->getNotifications($enrollment->id) as $notification)
                                     @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
                                         <p>
-                                            <a href="{{ route('enrolledpage') }}">
+                                            <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-hourglass-half" style="color: orange;"></i>
                                                 Please wait for the approval by the admin for 
                                                 <span style="color: red;">
@@ -46,7 +46,7 @@
                                         </p>
                                     @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
                                         <p>
-                                            <a href="{{ route('enrolledpage') }}">
+                                            <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-check" style="color: green;"></i>
                                                 You are now successfully enrolled in 
                                                 <span style="color: red;">
@@ -58,7 +58,7 @@
                                         </p>
                                     @elseif ($notification->enrollment && $notification->enrollment->status === 'Cancelled')
                                         <p>
-                                            <a href="{{ route('enrolledpage') }}">
+                                            <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-xmark" style="color: red;"></i>
                                                 Cancelled
                                                 <span style="color: red;">{{ $notification->enrollment->offered->course->course }}</span> 

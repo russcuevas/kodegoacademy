@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 // USER PANEL
@@ -17,6 +18,8 @@ Route::get('/enrolled', [HomeController::class, 'Enrolled'])->name('enrolledpage
 Route::get('/contact', [HomeController::class, 'Contact'])->name('contactpage');
 Route::post('/contact-form', [HomeController::class, 'SubmitContact'])->name('submitcontact');
 Route::post('/cancelled-enrollee', [HomeController::class, 'CancelledEnrollee'])->name('cancelledenrollee');
+// NOTIFICATIONS USER PANEL
+Route::post('/notification-mark-seen', [NotificationController::class, 'NotificationSeen'])->name('notification-seen');
 
 // USER PANEL ENROLL
 Route::post('/enroll/{offered_course}', [HomeController::class, 'Enrollment'])->name('userenroll');

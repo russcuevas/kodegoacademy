@@ -9,61 +9,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+use App\Http\Controllers\NotificationController;
 
 class HomeController extends Controller
 {
-    public function Home()
+    // HOME CONTAINS NOTIFICATION GETTING FROM OTHER CONTROLLER
+    public function Home(NotificationController $notificationController)
     {
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
         $enrollments = Auth::check() ? Enrollment::where('user_id', Auth::user()->id)->get() : collect();
 
-        $notifications = $this->getNotificationsForEnrollments($enrollments);
-        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+        $notifications = $notificationController->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $notificationController->getTotalUnreadNotifications($enrollments);
 
         return view('page.home', compact('offered_course', 'notifications', 'unreadNotifications', 'enrollments'));
     }
+    // END HOME
 
 
-    // GET NOTIFICATIONS
-    private function getNotificationsForEnrollments($enrollments)
-    {
-        $notifications = [];
-
-        foreach ($enrollments as $enrollment) {
-            $notifications = array_merge($notifications, $this->getNotifications($enrollment->id)->toArray());
-        }
-
-        return $notifications;
-    }
-
-
-    private function getTotalUnreadNotifications($enrollments)
-    {
-        $unreadNotifications = 0;
-        foreach ($enrollments as $enrollment) {
-            $unreadNotifications += $this->getUnreadNotifications($enrollment->id);
-        }
-
-        return $unreadNotifications;
-    }
-
-    public function getNotifications($enrollmentId)
-    {
-        return Notification::where('enrollment_id', $enrollmentId)
-            ->where('is_Seen', 0)
-            ->get();
-    }
-
-
-    private function getUnreadNotifications($enrollmentId)
-    {
-        return Notification::where('enrollment_id', $enrollmentId)->where('is_Seen', 0)->count();
-    }
-
-    // END GET NOTIFICATIONS
-
-
-
+    // USERS ENROLLMENT
     public function Enrollment(Request $request, Offered $offered_course)
     {
         if ($request->user()) {
@@ -72,10 +36,30 @@ class HomeController extends Controller
                 ->first();
 
             if ($existingEnrollment) {
-                return response()->json([
-                    'message' => 'You are already enrolled in this course.',
-                    'status' => 400,
-                ]);
+                if ($existingEnrollment->status === 'Cancelled') {
+                    $existingEnrollment->update([
+                        'status' => 'Pending',
+                    ]);
+
+                    $offered_course->decrement('available');
+
+                    $notification = $existingEnrollment->notifications->first();
+                    if ($notification) {
+                        $notification->update([
+                            'is_Seen' => 0,
+                        ]);
+                    }
+
+                    return response()->json([
+                        'message' => 'Enrolled again successfully',
+                        'status' => 200,
+                    ]);
+                } else {
+                    return response()->json([
+                        'message' => 'You are already enrolled in this course.',
+                        'status' => 400,
+                    ]);
+                }
             }
 
             if ($offered_course->available > 0) {
@@ -83,7 +67,6 @@ class HomeController extends Controller
                 $lastNumber = intval(substr($lastEnrollment, 8)) + 1;
                 $newEnrollmentNumber = 'Enrollee' . str_pad($lastNumber, 2, '0', STR_PAD_LEFT);
 
-                // Create the enrollment
                 $enrollment = Enrollment::create([
                     'enrollment_number' => $newEnrollmentNumber,
                     'user_id' => $request->user()->id,
@@ -91,7 +74,6 @@ class HomeController extends Controller
                     'status' => 'Pending',
                 ]);
 
-                // Create a notification for the user
                 Notification::create([
                     'enrollment_id' => $enrollment->id,
                     'is_Seen' => 0,
@@ -100,12 +82,12 @@ class HomeController extends Controller
                 $offered_course->decrement('available');
 
                 return response()->json([
-                    'message' => 'Request submitted please wait the approval of the instructor',
+                    'message' => 'Request submitted. Please wait for the approval of the instructor.',
                     'status' => 200,
                 ]);
             } else {
                 return response()->json([
-                    'message' => 'No available slots',
+                    'message' => 'No available slots.',
                     'status' => 400,
                 ]);
             }
@@ -116,27 +98,33 @@ class HomeController extends Controller
             ]);
         }
     }
+    // END USERS ENROLLMENT
 
 
-    public function About()
+    // ABOUT CONTAINS NOTIFICATION GETTING FROM OTHER CONTROLLER
+    public function About(NotificationController $notificationController)
     {
         $enrollments = Auth::user()->enrollments ?? collect();
-        $notifications = $this->getNotificationsForEnrollments($enrollments);
-        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+        $notifications = $notificationController->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $notificationController->getTotalUnreadNotifications($enrollments);
 
         return view('page.about', compact('notifications', 'unreadNotifications', 'enrollments'));
     }
+    // END ABOUT
 
 
-    public function Course()
+    // COURSE CONTAINS NOTIFICATION GETTING FROM OTHER CONTROLLER
+    public function Course(NotificationController $notificationController)
     {
         $enrollments = Auth::user()->enrollments ?? collect();
-        $notifications = $this->getNotificationsForEnrollments($enrollments);
-        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+        $notifications = $notificationController->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $notificationController->getTotalUnreadNotifications($enrollments);
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
         return view('page.course', compact('offered_course', 'enrollments', 'notifications', 'unreadNotifications'));
     }
+    // END COURSE
 
+    // PROFILE IF YOU CLICK YOU WILL GO TO USERS DASHBOARD
     public function Profile()
     {
         if (Auth::check()) {
@@ -150,7 +138,9 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('page.profile', compact('user'));
     }
+    // END PROFILE
 
+    // ENROLLED PAGE OF THE SPECIFIC AUTH USERS
     public function Enrolled()
     {
         if (Auth::check() && Auth::user()->user_role === 'user') {
@@ -164,7 +154,9 @@ class HomeController extends Controller
             return redirect()->route('homepage');
         }
     }
+    // END ENROLLED
 
+    // USERS CAN CANCEL ENROLLED
     public function CancelledEnrollee(Request $request)
     {
         if ($request->ajax()) {
@@ -191,7 +183,7 @@ class HomeController extends Controller
             'status' => 400,
         ]);
     }
-
+    // END CANCEL ENROLLED
 
 
     public function Contact()
