@@ -35,6 +35,8 @@
                             <div class="card-body">
                                 <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->position->position }}</h5>
                                 <h5 class="card-title" style="color:#004225; font-weight: 900;">{{ $offered_courses->course->course }}</h5>
+                                <h5 class="card-title" style="color:red; font-weight: 900;">Remaining slots : {{ $offered_courses->available }}</h5>
+                                <hr>
                                 <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
                                 <p class="card-text" style="font-style: italic; color: black;">"{{ $offered_courses->course_description }}"</p>
                                 <p> <i class="fa-regular fa-clock"></i> Scheduled : <span style="color: red">{{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
