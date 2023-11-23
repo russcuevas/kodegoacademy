@@ -16,15 +16,22 @@ class HomeController extends Controller
     {
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
         $enrollment = Auth::check() ? Enrollment::where('user_id', Auth::user()->id)->first() : null;
-        $notifications = $enrollment ? $this->getNotificationsForEnrollment($enrollment->id) : [];
+        $notifications = $enrollment ? $this->getNotifications($enrollment->id) : [];
+        $unreadNotifications = $enrollment ? $this->getUnreadNotifications($enrollment->id) : 0;
 
-        return view('page.home', compact('offered_course', 'notifications'));
+        return view('page.home', compact('offered_course', 'notifications', 'unreadNotifications'));
     }
 
-    private function getNotificationsForEnrollment($enrollmentId)
+    private function getNotifications($enrollmentId)
     {
         return Notification::where('enrollment_id', $enrollmentId)->get();
     }
+
+    private function getUnreadNotifications($enrollmentId)
+    {
+        return Notification::where('enrollment_id', $enrollmentId)->where('is_Seen', 0)->count();
+    }
+
 
 
 

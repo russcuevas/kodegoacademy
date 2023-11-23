@@ -21,27 +21,46 @@
                         <a id="contact-link" class="nav-link" href="{{ route('contactpage') }}">Contact</a>
                     </li>
 
-                    <li class="notification-dropdown">
-                        <a id="notificationIcon" class="nav-link" href="#">
-                            <i class="fas fa-bell"></i>
-                            <span id="notificationCounter">2</span>
-                        </a>
-                        <div id="notificationPanel" class="notification-box">
-                        @foreach ($notifications as $notification)
-                            @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
-                                <p><a href="{{ route('enrolledpage') }}"><i class="fa-solid fa-hourglass-half" style="color: red;"></i>
-                                    </i> Please wait for the approval by the admin for <span style="color: red;"> {{ $notification->enrollment->offered->course->course }} </span> 
-                                    course thankyou for enrolling!!</a>
-                                </p>
-                            @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
-                                <p><a href="#"><i class="fa-solid fa-check" style="color: green;"></i>
-                                    </i> You are now successfully enrolled in <span style="color: red;"> {{ $notification->enrollment->offered->course->course }} 
-                                    </span> course!</a>
-                                </p>
-                            @endif
-                        @endforeach
-                        </div>
-                    </li>
+                    {{-- DISPLAYING NOTIFICATION --}}
+                    @if (!Auth::check() || (Auth::user()->user_role === 'user'))
+                        <li class="notification-dropdown">
+                            <a id="notificationIcon" class="nav-link" href="#">
+                                <i class="fas fa-bell"></i>
+                                <span id="notificationCounter">{{ $unreadNotifications }}</span>
+                            </a>
+
+                            <div id="notificationPanel" class="notification-box">
+                                @if (Auth::check())
+                                    @foreach ($notifications as $notification)
+                                        @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
+                                            <p>
+                                                <a href="{{ route('enrolledpage') }}">
+                                                    <i class="fa-solid fa-hourglass-half" style="color: red;"></i>
+                                                    Please wait for the approval by the admin for 
+                                                    <span style="color: red;">{{ $notification->enrollment->offered->course->course }}</span> 
+                                                    course thank you for enrolling!!
+                                                </a>
+                                            </p>
+                                        @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
+                                            <p>
+                                                <a href="#">
+                                                    <i class="fa-solid fa-check" style="color: green;"></i>
+                                                    You are now successfully enrolled in 
+                                                    <span style="color: red;">{{ $notification->enrollment->offered->course->course }}</span> 
+                                                    course!
+                                                </a>
+                                            </p>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p class="text-center">
+                                        <a href="{{ route('loginpage') }}" style="color: red;">Login first</a>
+                                    </p>
+                                @endif
+                            </div>
+                        </li>
+                    @endif
+
 
 
                     <li class="nav-item dropdown">
