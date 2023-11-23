@@ -15,23 +15,52 @@ class HomeController extends Controller
     public function Home()
     {
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
-        $enrollment = Auth::check() ? Enrollment::where('user_id', Auth::user()->id)->first() : null;
-        $notifications = $enrollment ? $this->getNotifications($enrollment->id) : [];
-        $unreadNotifications = $enrollment ? $this->getUnreadNotifications($enrollment->id) : 0;
+        $enrollments = Auth::check() ? Enrollment::where('user_id', Auth::user()->id)->get() : collect();
 
-        return view('page.home', compact('offered_course', 'notifications', 'unreadNotifications'));
+        $notifications = $this->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+
+        return view('page.home', compact('offered_course', 'notifications', 'unreadNotifications', 'enrollments'));
     }
 
-    private function getNotifications($enrollmentId)
+
+    // GET NOTIFICATIONS
+    private function getNotificationsForEnrollments($enrollments)
     {
-        return Notification::where('enrollment_id', $enrollmentId)->get();
+        $notifications = [];
+
+        foreach ($enrollments as $enrollment) {
+            $notifications = array_merge($notifications, $this->getNotifications($enrollment->id)->toArray());
+        }
+
+        return $notifications;
     }
+
+
+    private function getTotalUnreadNotifications($enrollments)
+    {
+        $unreadNotifications = 0;
+        foreach ($enrollments as $enrollment) {
+            $unreadNotifications += $this->getUnreadNotifications($enrollment->id);
+        }
+
+        return $unreadNotifications;
+    }
+
+    public function getNotifications($enrollmentId)
+    {
+        return Notification::where('enrollment_id', $enrollmentId)
+            ->where('is_Seen', 0)
+            ->get();
+    }
+
 
     private function getUnreadNotifications($enrollmentId)
     {
         return Notification::where('enrollment_id', $enrollmentId)->where('is_Seen', 0)->count();
     }
 
+    // END GET NOTIFICATIONS
 
 
 
@@ -91,13 +120,21 @@ class HomeController extends Controller
 
     public function About()
     {
-        return view('page.about');
+        $enrollments = Auth::user()->enrollments ?? collect();
+        $notifications = $this->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+
+        return view('page.about', compact('notifications', 'unreadNotifications', 'enrollments'));
     }
+
 
     public function Course()
     {
+        $enrollments = Auth::user()->enrollments ?? collect();
+        $notifications = $this->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
         $offered_course = Offered::with(['position', 'course', 'user'])->get();
-        return view('page.course', compact('offered_course'));
+        return view('page.course', compact('offered_course', 'enrollments', 'notifications', 'unreadNotifications'));
     }
 
     public function Profile()
@@ -159,7 +196,10 @@ class HomeController extends Controller
 
     public function Contact()
     {
-        return view('page.contact');
+        $enrollments = Auth::user()->enrollments ?? collect();
+        $notifications = $this->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+        return view('page.contact', compact('enrollments', 'notifications', 'unreadNotifications'));
     }
 
     public function SubmitContact(Request $request)
