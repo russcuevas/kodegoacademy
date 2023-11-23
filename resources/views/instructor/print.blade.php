@@ -20,11 +20,11 @@
                 </thead>
                 <tbody>
                     @php
-                        $counter = 1;
+                        $list = 1;
                     @endphp
                     @foreach ($enrollments as $enrollment)
                         <tr>
-                            <td>{{ $counter++ }}.) {{ $enrollment->user->name }}</td>
+                            <td>{{ $list++ }}.) {{ $enrollment->user->name }}</td>
                             <td>{{ $enrollment->user->email }}</td>
                         </tr>
                     @endforeach

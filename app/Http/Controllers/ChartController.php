@@ -51,7 +51,7 @@ class ChartController extends Controller
         foreach ($positions as $position) {
             $enrolleesCount[] = Enrollment::whereHas('offered.position', function ($query) use ($position) {
                 $query->where('position', $position);
-            })->count();
+            })->where('status', '=', 'Enrolled')->count();
         }
 
         return $enrolleesCount;
