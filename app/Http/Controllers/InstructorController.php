@@ -142,14 +142,22 @@ class InstructorController extends Controller
             ]);
         }
 
-        $user = Auth::user();
+        $userId = Auth::id();
+        $user = User::find($userId);
 
-        $user->password = Hash::make($request->input('password'));
-        $user->save();
+        if ($user) {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+
+            return response()->json([
+                'message' => 'Password changed successfully',
+                'status' => 200
+            ]);
+        }
 
         return response()->json([
-            'message' => 'Password changed successfully',
-            'status' => 200
+            'message' => 'User not found',
+            'status' => 404
         ]);
     }
 }
