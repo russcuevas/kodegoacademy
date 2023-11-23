@@ -21,6 +21,7 @@
                     <th>Available</th>
                     <th>Course description</th>
                     <th>Session at</th>
+                    <th>End at</th>
                     <th>Instructor</th>
                     <th>Actions</th>
                 </tr>
@@ -42,6 +43,7 @@
                         </td>
                         <td>{{ $offered->course_description }}</td>
                         <td>{{ \Carbon\Carbon::parse($offered->scheduled_at)->format('F j, Y / h:i A') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($offered->end_at)->format('F j, Y / h:i A') }}</td>
                         <td>{{ $offered->user->name }}</td>
                         <td>
                             <i class="fa-solid fa-eye"></i>

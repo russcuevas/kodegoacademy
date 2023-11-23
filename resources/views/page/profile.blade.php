@@ -109,7 +109,7 @@
                         <a id="home-link" class="nav-link" href="{{ route('homepage') }}"> <i class="fas fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item" id="nav-item-nav">
-                        <a id="about-link" class="nav-link" href="{{ route('aboutpage') }}"> <i class="fas fa-book"></i> Enrolled</a>
+                        <a id="about-link" class="nav-link" href="{{ route('enrolledpage') }}"> <i class="fas fa-book"></i> Enrolled</a>
                     </li>
                     <li class="nav-item" id="nav-item-nav">
                         <a id="course-link" class="nav-link" href="{{ route('pagecourse') }}"> <i class="fas fa-cogs"></i> Settings</a>
