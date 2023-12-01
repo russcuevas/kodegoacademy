@@ -214,11 +214,11 @@ class HomeController extends Controller
     // END DELETE ENROLLEE
 
 
-    public function Contact()
+    public function Contact(NotificationController $notificationController)
     {
         $enrollments = Auth::user()->enrollments ?? collect();
-        $notifications = $this->getNotificationsForEnrollments($enrollments);
-        $unreadNotifications = $this->getTotalUnreadNotifications($enrollments);
+        $notifications = $notificationController->getNotificationsForEnrollments($enrollments);
+        $unreadNotifications = $notificationController->getTotalUnreadNotifications($enrollments);
         return view('page.contact', compact('enrollments', 'notifications', 'unreadNotifications'));
     }
 

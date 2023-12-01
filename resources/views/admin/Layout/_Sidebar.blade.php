@@ -27,7 +27,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="fa-solid fa-gear"></i><span style="font-weight: bold"> Settings </span>
+                <i class="fa-solid fa-gear"></i><span style="font-weight: bold"> Activity </span>
             </a>
         </li>
     </ul>

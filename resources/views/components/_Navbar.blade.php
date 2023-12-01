@@ -29,11 +29,20 @@
                                 <span id="notificationCounter">{{ $unreadNotifications }}</span>
                             </span>
                     <div id="notificationPanel" class="notification-box">
-                        @if (Auth::check())
-                            @foreach ($enrollments as $enrollment)
-                                @foreach (app('App\Http\Controllers\NotificationController')->getNotifications($enrollment->id) as $notification)
-                                    @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
-                                        <p>
+@if (Auth::check())
+    @if ($enrollments->isEmpty())
+        <p>
+            <i class="fa-solid fa"></i><span>No message inbox</span>
+        </p>
+    @else
+        @foreach ($enrollments as $enrollment)
+            @php
+                $notifications = app('App\Http\Controllers\NotificationController')->getNotifications($enrollment->id);
+            @endphp
+            @if ($notifications->isNotEmpty())
+                @foreach ($notifications as $notification)
+                    @if ($notification->enrollment && $notification->enrollment->status === 'Pending')
+<p>
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-hourglass-half" style="color: orange;"></i>
                                                 Please wait for the approval by the admin for 
@@ -44,8 +53,8 @@
                                                 course thank you for enrolling!!
                                             </a>
                                         </p>
-                                    @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
-                                        <p>
+                    @elseif ($notification->enrollment && $notification->enrollment->status === 'Enrolled')
+                        <p>
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-check" style="color: green;"></i>
                                                 You are now successfully enrolled in 
@@ -56,8 +65,8 @@
                                                 course!
                                             </a>
                                         </p>
-                                    @elseif ($notification->enrollment && $notification->enrollment->status === 'Cancelled')
-                                        <p>
+                    @elseif ($notification->enrollment && $notification->enrollment->status === 'Cancelled')
+                        <p>
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-xmark" style="color: red;"></i>
                                                 Cancelled
@@ -65,14 +74,20 @@
                                                 course!
                                             </a>
                                         </p>
-                                    @endif
-                                @endforeach
-                            @endforeach
-                        @else
-                            <p class="text-center">
-                                <a href="{{ route('loginpage') }}" style="color: red;">Login first</a>
-                            </p>
-                        @endif
+                    @endif
+                @endforeach
+            @else
+                <p>
+                    <i class="fa-solid fa"></i><span>No message inbox</span>
+                </p>
+            @endif
+        @endforeach
+    @endif
+@else
+    <p class="text-center">
+        <a href="{{ route('loginpage') }}" style="color: red;">Login first</a>
+    </p>
+@endif
                     </div>
 
 
