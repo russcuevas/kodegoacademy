@@ -25,7 +25,7 @@
                 </div>
             </section>
 
-            <div id="no-available-message" style="display: none; color: red; font-weight: 900; text-align: center;">No available courses for the selected option.</div>
+            <div id="no-available-message" class="text-danger" style="display: none; font-weight: 900; text-align: center;">No available courses for the selected option.</div>
             <div class="row">
                 @if($offered_course->count() > 0)
                 @foreach ($offered_course as $offered_courses)
@@ -39,8 +39,8 @@
                                 <hr>
                                 <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
                                 <p class="card-text" style="font-style: italic; color: black;">"{{ $offered_courses->course_description }}"</p>
-                                <p> <i class="fa-regular fa-clock"></i> Scheduled : <span style="color: red">{{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
-                                <p> <i class="fa-solid fa-hourglass-end"></i> End : <span style="color: red">{{ \Carbon\Carbon::parse($offered_courses->end_at)->format('F j, Y / h:i A') }}</span></p>
+                                <p> <i class="fa-regular fa-clock"></i> Scheduled : <span class="text-danger">{{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
+                                <p> <i class="fa-solid fa-hourglass-end"></i> End : <span class="text-danger">{{ \Carbon\Carbon::parse($offered_courses->end_at)->format('F j, Y / h:i A') }}</span></p>
                                 @if(auth()->check() && auth()->user()->user_role == 'user')
                                     <form class="enrollmentForm" id="enrollmentForm" action="{{ route('userenroll', ['offered_course' => $offered_courses->id]) }}" method="post">
                                         @csrf

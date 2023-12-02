@@ -18,9 +18,9 @@
                 <img src="{{ asset('storage/auth/images/profile_pictures/' . $enrollment->offered->user->profile_picture) }}" style="height: 100px; width: 100px;" alt="Profile Picture">
                 <p><strong>Instructor Name: </strong> {{ $enrollment->offered->user->name }}</p>
                 <p><strong>Instructor Contact:</strong> {{ $enrollment->offered->user->contact }}</p>
-                <p><strong>Scheduled at:</strong> <span style="color: red;">{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
-                <p><strong>End at:</strong> <span style="color: red;">{{ \Carbon\Carbon::parse($enrollment->offered->end_at)->format('F j, Y / h:i A')}}</span></p>
-                <p><strong>Enrollment Status:</strong> <span style="color: orange; font-weight: 900;">{{ $enrollment->status }}</span></p>
+                <p><strong>Scheduled at:</strong> <span class="text-danger">{{ \Carbon\Carbon::parse($enrollment->offered->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
+                <p><strong>End at:</strong> <span class="text-danger">{{ \Carbon\Carbon::parse($enrollment->offered->end_at)->format('F j, Y / h:i A')}}</span></p>
+                <p><strong>Enrollment Status:</strong> <span class="text-warning" style="font-weight: 900;">{{ $enrollment->status }}</span></p>
             </div>
             <div class="modal-footer">
                 @if($enrollment->status === 'Cancelled')

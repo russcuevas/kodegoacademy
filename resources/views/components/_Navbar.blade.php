@@ -32,7 +32,7 @@
                     @if (Auth::check())
                         @if ($enrollments->isEmpty())
                             <p class="text-center">
-                                <span style="color: red;">No message inbox</span>
+                                <span class="text-danger">No message inbox</span>
                             </p>
                         @else
                             @foreach ($enrollments as $enrollment)
@@ -46,7 +46,7 @@
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-hourglass-half" style="color: orange;"></i>
                                                 Please wait for the approval by the admin for 
-                                                <span style="color: red;">
+                                                <span class="text-danger">
                                                     {{ $notification->enrollment->offered->position->position}} :
                                                     {{ $notification->enrollment->offered->course->course }}
                                                 </span> 
@@ -58,7 +58,7 @@
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-check" style="color: green;"></i>
                                                 You are now successfully enrolled in 
-                                                <span style="color: red;">
+                                                <span class="text-danger">
                                                     {{ $notification->enrollment->offered->position->position}} :
                                                     {{ $notification->enrollment->offered->course->course }}
                                                 </span> 
@@ -68,9 +68,9 @@
                                         @elseif ($notification->enrollment && $notification->enrollment->status === 'Cancelled')
                                         <p>
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
-                                                <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                                <i class="fa-solid fa-xmark" class="text-danger"></i>
                                                 Cancelled
-                                                <span style="color: red;">{{ $notification->enrollment->offered->course->course }}</span> 
+                                                <span class="text-danger">{{ $notification->enrollment->offered->course->course }}</span> 
                                                 course!
                                             </a>
                                         </p>
@@ -78,14 +78,14 @@
                                         @endforeach
                                         @else
                                             <p class="text-center">
-                                                <span style="color: red;">No message inbox</span>
+                                                <span class="text-danger">No message inbox</span>
                                             </p>
                                         @endif
                                     @endforeach
                                 @endif
                             @else
                             <p class="text-center">
-                                <a href="{{ route('loginpage') }}" style="color: red;">Login first</a>
+                                <a href="{{ route('loginpage') }}" class="text-danger">Login first</a>
                             </p>
                         @endif
                     </div>

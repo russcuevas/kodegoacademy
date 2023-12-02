@@ -135,7 +135,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
@@ -158,12 +158,12 @@
                         <p>Are you sure you want to delete {{ $instructor->name }}?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <form class="deleteInstructorForm" id="deleteInstructorForm" method="POST" action="{{ route('deleteusers', ['id' => $instructor->id]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

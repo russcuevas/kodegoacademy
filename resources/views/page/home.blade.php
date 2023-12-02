@@ -89,8 +89,8 @@
                                 <hr>
                                 <h5 class="card-title">{{ $offered_courses->user->name }}</h5>
                                 <p class="card-text" style="font-style: italic; color: black;">"{{ $offered_courses->course_description }}"</p>
-                                <p> <i class="fa-regular fa-clock"></i> Scheduled : <span style="color: red">{{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
-                                <p> <i class="fa-solid fa-hourglass-end"></i> End : <span style="color: red">{{ \Carbon\Carbon::parse($offered_courses->end_at)->format('F j, Y / h:i A') }}</span></p>
+                                <p> <i class="fa-regular fa-clock"></i> Scheduled : <span class="text-danger">{{ \Carbon\Carbon::parse($offered_courses->scheduled_at)->format('F j, Y / h:i A')}}</span></p>
+                                <p> <i class="fa-solid fa-hourglass-end"></i> End : <span class="text-danger">{{ \Carbon\Carbon::parse($offered_courses->end_at)->format('F j, Y / h:i A') }}</span></p>
                                 @if(auth()->check() && auth()->user()->user_role == 'user')
                                     <form class="enrollmentForm" id="enrollmentForm" action="{{ route('userenroll', ['offered_course' => $offered_courses->id]) }}" method="post">
                                         @csrf
@@ -104,7 +104,7 @@
                 @endforeach
                 @else
                     <div class="text-center mb-5">
-                        <h5 style="color: red;">No courses available right now</h5>
+                        <h5 class="text-danger">No courses available right now</h5>
                     </div>
                 @endif
                 <div class="text-center">
@@ -157,7 +157,7 @@
 
     <footer class="py-3 bg-dark text-white">
         <div class="container text-center">
-            Made by: Russel Vincent C. Cuevas 2023
+            Made by: Russel Vincent C. Cuevas / Lyka Lalog / John Mark Manalo 2023
         </div>
     </footer>
 
