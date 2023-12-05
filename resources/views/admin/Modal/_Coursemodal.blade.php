@@ -42,36 +42,38 @@
 
                             <div class="col-md-6">
                                 <h5>Course list</h5>
-                                <table class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Position</th>
-                                            <th>Action</th>
-                                            <th>Course</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($positions as $position)
-                                            @foreach ($position->courses as $course)
-                                                <tr>
-                                                    <td>{{ $position->position }}</td>
-                                                    <td>
-                                                        <a href=""><i class="fa-solid fa-pen"></i></a>
-                                                        |
-                                                        <a href=""><i class="fa-solid fa-x"></i></a>
-                                                    </td>
-                                                    <td>{{ $course->course }}</td>
-                                                    <td>
-                                                        <a href=""><i class="fa-solid fa-pen"></i></a>
-                                                        |
-                                                        <a href=""><i class="fa-solid fa-x"></i></a>
-                                                    </td>
-                                                </tr>
+                                <div style="height: 300px; overflow-y: auto">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Position</th>
+                                                {{-- <th>Action</th> --}}
+                                                <th>Course</th>
+                                                {{-- <th>Action</th> --}}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($positions as $position)
+                                                @foreach ($position->courses as $course)
+                                                    <tr>
+                                                        <td>{{ $position->position }}</td>
+                                                        {{-- <td>
+                                                            <a href=""><i class="fa-solid fa-pen"></i></a>
+                                                            |
+                                                            <a href=""><i class="fa-solid fa-x"></i></a>
+                                                        </td> --}}
+                                                        <td>{{ $course->course }}</td>
+                                                        {{-- <td>
+                                                            <a href=""><i class="fa-solid fa-pen"></i></a>
+                                                            |
+                                                            <a href=""><i class="fa-solid fa-x"></i></a>
+                                                        </td> --}}
+                                                    </tr>
+                                                @endforeach
                                             @endforeach
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
