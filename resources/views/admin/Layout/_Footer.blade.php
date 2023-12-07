@@ -22,7 +22,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            text: '{{ session('success_message') }}',
+            title: '{{ session('success_message') }}',
             toast: true,
             showConfirmButton: false,
             position: 'top-end',

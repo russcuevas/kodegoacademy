@@ -11,5 +11,18 @@
     <script src="{{ asset('page/js/page.js') }}"></script>
     <script src="{{ asset('page/js/course_page.js') }}"></script>
     <script src="{{ asset('page/vendor/tilt/tilt.jquery.min.js') }}"></script>
+    @if(session('success_message'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('success_message') }}',
+                toast: true,
+                showConfirmButton: false,
+                position: 'top-end',
+                timer: 3000,
+                timerProgressBar: true
+            });
+        </script>
+    @endif
 </body>
 </html>

@@ -6,6 +6,18 @@
     <script src="{{ asset('auth/js/form.js') }}"></script>
     <script src="{{ asset('auth/ajax/registration.js') }}"></script>
     <script src="{{ asset('auth/ajax/login.js') }}"></script>
+    @if(session('logout_message'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('logout_message') }}',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
+        </script>
+    @endif
     </body>
-
     </html>

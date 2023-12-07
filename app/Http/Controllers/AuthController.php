@@ -71,6 +71,9 @@ class AuthController extends Controller
     public function Logout()
     {
         Auth::logout();
+
+        // set this logout message if user logout
+        session()->flash('logout_message', 'Logout successful');
         return redirect('/login');
     }
 
