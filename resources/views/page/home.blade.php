@@ -153,7 +153,7 @@
 
     <footer class="py-3 bg-dark text-white">
         <div class="container text-center">
-            Made by: Russel Vincent C. Cuevas / Lyka Lalog / John Mark Manalo 2023
+            Made by: Russel Vincent C. Cuevas 2023
         </div>
     </footer>
 

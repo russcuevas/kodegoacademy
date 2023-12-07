@@ -18,5 +18,18 @@
     <script src="{{ asset('admins/js/datatable.js') }}"></script>
     <script src="{{ asset('admins/js/usersdashboard.js')}}"></script>
     <script src="{{ asset('admins/js/chart.js')}}"></script>
+    @if(session('success_message'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            text: '{{ session('success_message') }}',
+            toast: true,
+            showConfirmButton: false,
+            position: 'top-end',
+            timer: 3000,
+            timerProgressBar: true
+        });
+    </script>
+    @endif
 </body>
 </html>

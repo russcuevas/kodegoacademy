@@ -59,10 +59,14 @@ class AuthController extends Controller
                     $redirectRoute = '/';
             }
 
+            // set this login message inside dashboard
+            session()->flash('success_message', 'Login successful');
             return response()->json(['message' => 'Login successful', 'redirect_route' => $redirectRoute]);
         }
+
         return response()->json(['message' => 'Invalid credentials', 'redirect_route' => 'loginpage'], JsonResponse::HTTP_UNAUTHORIZED);
     }
+
 
     public function Logout()
     {
