@@ -172,21 +172,21 @@
                         <i class="fas fa-user"></i> Dashboard
                     </a>
                 </li>
-                <li class="{{ Route::currentRouteName() == 'homepage' ? 'active' : '' }}">
-                    <a href="{{ route('homepage') }}">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
                 <li class="{{ Route::currentRouteName() == 'enrolledpage' ? 'active' : '' }}">
                     <a href="{{ route('enrolledpage') }}">
                         <i class="fas fa-book"></i> Enrolled
                     </a>
                 </li>
-                <li class="{{ Route::currentRouteName() == '' ? 'active' : '' }}">
+                <li class="{{ Route::currentRouteName() == 'homepage' ? 'active' : '' }}">
+                    <a href="{{ route('homepage') }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                {{-- <li class="{{ Route::currentRouteName() == '' ? 'active' : '' }}">
                     <a href="">
                         <i class="fas fa-cogs"></i> Activity
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </aside>
 

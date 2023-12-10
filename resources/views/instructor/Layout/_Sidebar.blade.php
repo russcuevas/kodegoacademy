@@ -15,10 +15,10 @@
                 <i class="fa-brands fa-chrome"></i><span style="font-weight: 900"> Page</span>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fa-solid fa-gear"></i><span style="font-weight: 900"> Activity</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </div>
