@@ -3,7 +3,7 @@
 @include('instructor.Layout._Sidebar')
 
 
-<div class="container">
+<div class="container mb-5">
     <div class="main-content col-md-11">
         <h1 class="mb-2">List of enrollee</h1>
         <div class="mb-3">

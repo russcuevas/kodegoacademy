@@ -2,7 +2,7 @@
 @include('admin.Layout._Navbar')
 @include('admin.Layout._Sidebar')
 
-<div class="container">
+<div class="container mb-5">
     <div class="main-content col-md-11">
         <div class="row">
             <div class="col-md-3 boxes">

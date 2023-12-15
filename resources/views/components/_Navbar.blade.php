@@ -45,7 +45,7 @@
                                         <p>
                                             <a href="{{ route('enrolledpage') }}" onclick="markNotificationAsSeen('{{ $notification->id }}')">
                                                 <i class="fa-solid fa-hourglass-half" style="color: orange;"></i>
-                                                Please wait for the approval by the admin for 
+                                                Please wait for the approval by the instructor for 
                                                 <span class="text-danger">
                                                     {{ $notification->enrollment->offered->position->position}} :
                                                     {{ $notification->enrollment->offered->course->course }}
