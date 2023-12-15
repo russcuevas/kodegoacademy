@@ -23,7 +23,7 @@
                     <th>Session at</th>
                     <th>End at</th>
                     <th>Instructor</th>
-                    <th>Actions</th>
+                    {{-- <th>Actions</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -45,11 +45,11 @@
                         <td>{{ \Carbon\Carbon::parse($offered->scheduled_at)->format('F j, Y / h:i A') }}</td>
                         <td>{{ \Carbon\Carbon::parse($offered->end_at)->format('F j, Y / h:i A') }}</td>
                         <td>{{ $offered->user->name }}</td>
-                        <td>
+                        {{-- <td>
                             <i class="fa-solid fa-eye"></i>
                             <i class="fa-solid fa-pen-to-square"></i>
                             <i class="fa-solid fa-trash"></i>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>
